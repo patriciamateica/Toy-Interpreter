@@ -342,6 +342,293 @@ public class ProgramChooserController {
         );
         all.add(ex11);
 
+        Statement exSwitch = new CompoundStatement(
+                new VariableDeclarationStatement(new Integer(), "a"),
+                new CompoundStatement(
+                        new VariableDeclarationStatement(new Integer(), "b"),
+                        new CompoundStatement(
+                                new VariableDeclarationStatement(new Integer(), "c"),
+                                new CompoundStatement(
+                                        new AssignmentStatement(new ValueExpression(new IntegerValue(1)), "a"),
+                                        new CompoundStatement(
+                                                new AssignmentStatement(new ValueExpression(new IntegerValue(2)), "b"),
+                                                new CompoundStatement(
+                                                        new AssignmentStatement(new ValueExpression(new IntegerValue(5)), "c"),
+                                                        new CompoundStatement(
+                                                                new SwitchStatement(
+                                                                        new ArithmeticExpression(3, new VariableExpression("a"), new ValueExpression(new IntegerValue(10))),
+                                                                        new ArithmeticExpression(3, new VariableExpression("b"), new VariableExpression("c")),
+                                                                        new ValueExpression(new IntegerValue(10)),
+                                                                        new CompoundStatement(
+                                                                                new PrintStatement(new VariableExpression("a")),
+                                                                                new PrintStatement(new VariableExpression("b"))
+                                                                        ),
+                                                                        new CompoundStatement(
+                                                                                new PrintStatement(new ValueExpression(new IntegerValue(100))),
+                                                                                new PrintStatement(new ValueExpression(new IntegerValue(200)))
+                                                                        ),
+                                                                        new PrintStatement(new ValueExpression(new IntegerValue(300)))
+                                                                ),
+                                                                new PrintStatement(new ValueExpression(new IntegerValue(300)))
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+        all.add(exSwitch);
+
+
+        Statement exForFork = new CompoundStatement(
+                new VariableDeclarationStatement(new RefType(new Integer()), "a"),
+                new CompoundStatement(
+                        new newStatement("a", new ValueExpression(new IntegerValue(20))),
+                        new CompoundStatement(
+                                new ForStatement(
+                                        "v",
+                                        new ValueExpression(new IntegerValue(0)),                          // exp1
+                                        new ValueExpression(new IntegerValue(3)),                          // exp2
+                                        new ArithmeticExpression(1,                                        // exp3: v+1  (1 == +)
+                                                new VariableExpression("v"),
+                                                new ValueExpression(new IntegerValue(1))
+                                        ),
+                                        // body: fork(print(v); v = v * rH(a))
+                                        new ForkStatement(
+                                                new CompoundStatement(
+                                                        new PrintStatement(new VariableExpression("v")),
+                                                        new AssignmentStatement(
+                                                                new ArithmeticExpression(3,                       // 3 == *
+                                                                        new VariableExpression("v"),
+                                                                        new rhExpression(new VariableExpression("a"))
+                                                                ),
+                                                                "v"
+                                                        )
+                                                )
+                                        )
+                                ),
+                                // after for: print(rh(a))
+                                new PrintStatement(new rhExpression(new VariableExpression("a")))
+                        )
+                )
+        );
+        all.add(exForFork);
+
+// java
+        Statement exRepeatFork = new CompoundStatement(
+                new VariableDeclarationStatement(new Integer(), "v"),
+                new CompoundStatement(
+                        new VariableDeclarationStatement(new Integer(), "x"),
+                        new CompoundStatement(
+                                new VariableDeclarationStatement(new Integer(), "y"),
+                                new CompoundStatement(
+                                        new AssignmentStatement(new ValueExpression(new IntegerValue(0)), "v"),
+                                        new CompoundStatement(
+                                                // repeat ( fork(print(v); v=v-1); v=v+1 ) until v==3
+                                                new RepeatUntil(
+                                                        new CompoundStatement(
+                                                                new ForkStatement(
+                                                                        new CompoundStatement(
+                                                                                new PrintStatement(new VariableExpression("v")),
+                                                                                new AssignmentStatement(
+                                                                                        new ArithmeticExpression(2, // 2 == -
+                                                                                                new VariableExpression("v"),
+                                                                                                new ValueExpression(new IntegerValue(1))
+                                                                                        ),
+                                                                                        "v"
+                                                                                )
+                                                                        )
+                                                                ),
+                                                                new AssignmentStatement(
+                                                                        new ArithmeticExpression(1, // 1 == +
+                                                                                new VariableExpression("v"),
+                                                                                new ValueExpression(new IntegerValue(1))
+                                                                        ),
+                                                                        "v"
+                                                                )
+                                                        ),
+                                                        new model.expression.RelationalExpression("==",
+                                                                new VariableExpression("v"),
+                                                                new ValueExpression(new IntegerValue(3)))
+                                                ),
+                                                new CompoundStatement(
+                                                        new AssignmentStatement(new ValueExpression(new IntegerValue(1)), "x"),
+                                                        new CompoundStatement(
+                                                                new NopStatement(),
+                                                                new CompoundStatement(
+                                                                        new AssignmentStatement(new ValueExpression(new IntegerValue(3)), "y"),
+                                                                        new CompoundStatement(
+                                                                                new NopStatement(),
+                                                                                new PrintStatement(
+                                                                                        new ArithmeticExpression(3, // 3 == *
+                                                                                                new VariableExpression("v"),
+                                                                                                new ValueExpression(new IntegerValue(10))
+                                                                                        )
+                                                                                )
+                                                                        )
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+        all.add(exRepeatFork);
+
+        Statement exConditional = new CompoundStatement(
+                new VariableDeclarationStatement(new RefType(new Integer()), "a"),
+                new CompoundStatement(
+                        new VariableDeclarationStatement(new RefType(new Integer()), "b"),
+                        new CompoundStatement(
+                                new VariableDeclarationStatement(new Integer(), "v"),
+                                new CompoundStatement(
+                                        // new(a,0); new(b,0);
+                                        new newStatement("a", new ValueExpression(new IntegerValue(0))),
+                                        new CompoundStatement(
+                                                new newStatement("b", new ValueExpression(new IntegerValue(0))),
+                                                new CompoundStatement(
+                                                        // wh(a,1); wh(b,2);
+                                                        new whStatement("a", new ValueExpression(new IntegerValue(1))),
+                                                        new CompoundStatement(
+                                                                new whStatement("b", new ValueExpression(new IntegerValue(2))),
+                                                                new CompoundStatement(
+                                                                        // v = (rh(a) < rh(b)) ? 100 : 200; print(v);
+                                                                        new ConditionalAssignment(
+                                                                                "v",
+                                                                                new RelationalExpression("<",
+                                                                                        new rhExpression(new VariableExpression("a")),
+                                                                                        new rhExpression(new VariableExpression("b"))
+                                                                                ),
+                                                                                new ValueExpression(new IntegerValue(100)),
+                                                                                new ValueExpression(new IntegerValue(200))
+                                                                        ),
+                                                                        new CompoundStatement(
+                                                                                new PrintStatement(new VariableExpression("v")),
+                                                                                new CompoundStatement(
+                                                                                        // v = ((rh(b) - 2) > rh(a)) ? 100 : 200; print(v);
+                                                                                        new ConditionalAssignment(
+                                                                                                "v",
+                                                                                                new RelationalExpression(">",
+                                                                                                        new ArithmeticExpression(2, // 2 == -
+                                                                                                                new rhExpression(new VariableExpression("b")),
+                                                                                                                new ValueExpression(new IntegerValue(2))
+                                                                                                        ),
+                                                                                                        new rhExpression(new VariableExpression("a"))
+                                                                                                ),
+                                                                                                new ValueExpression(new IntegerValue(100)),
+                                                                                                new ValueExpression(new IntegerValue(200))
+                                                                                        ),
+                                                                                        new PrintStatement(new VariableExpression("v"))
+                                                                                )
+                                                                        )
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+        all.add(exConditional);
+
+        Statement exSleepExample = new CompoundStatement(
+                new VariableDeclarationStatement(new Integer(), "v"),
+                new CompoundStatement(
+                        new AssignmentStatement(new ValueExpression(new IntegerValue(0)), "v"),
+                        new CompoundStatement(
+                                new WhileStatement(
+                                        new model.expression.RelationalExpression("<",
+                                                new VariableExpression("v"),
+                                                new ValueExpression(new IntegerValue(3))
+                                        ),
+                                        new CompoundStatement(
+                                                // fork(print(v); v = v + 1)
+                                                new ForkStatement(
+                                                        new CompoundStatement(
+                                                                new PrintStatement(new VariableExpression("v")),
+                                                                new AssignmentStatement(
+                                                                        new ArithmeticExpression(1, // 1 == +
+                                                                                new VariableExpression("v"),
+                                                                                new ValueExpression(new IntegerValue(1))
+                                                                        ),
+                                                                        "v"
+                                                                )
+                                                        )
+                                                ),
+                                                // v = v + 1
+                                                new AssignmentStatement(
+                                                        new ArithmeticExpression(1,
+                                                                new VariableExpression("v"),
+                                                                new ValueExpression(new IntegerValue(1))
+                                                        ),
+                                                        "v"
+                                                )
+                                        )
+                                ),
+                                new CompoundStatement(
+                                        new SleepStatement(new ValueExpression(new IntegerValue(5))),
+                                        new PrintStatement(
+                                                new ArithmeticExpression(3, // 3 == *
+                                                        new VariableExpression("v"),
+                                                        new ValueExpression(new IntegerValue(10))
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+        all.add(exSleepExample);
+
+        Statement exMulIf = new CompoundStatement(
+                new VariableDeclarationStatement(new Integer(), "v1"),
+                new CompoundStatement(
+                        new VariableDeclarationStatement(new Integer(), "v2"),
+                        new CompoundStatement(
+                                new AssignmentStatement(new ValueExpression(new IntegerValue(2)), "v1"),
+                                new CompoundStatement(
+                                        new AssignmentStatement(new ValueExpression(new IntegerValue(3)), "v2"),
+                                        new IfStatement(
+                                                // condition: v1 != 0
+                                                new model.expression.RelationalExpression("!=",
+                                                        new VariableExpression("v1"),
+                                                        new ValueExpression(new IntegerValue(0))
+                                                ),
+                                                // then: print(MUL(v1,v2))
+                                                new PrintStatement(new MulExpression(
+                                                        new VariableExpression("v1"),
+                                                        new VariableExpression("v2")
+                                                )),
+                                                // else: print(v1)
+                                                new PrintStatement(new VariableExpression("v1"))
+                                        )
+                                )
+                        )
+                )
+        );
+        all.add(exMulIf);
+
+        Statement exWaitExample = new CompoundStatement(
+                new VariableDeclarationStatement(new Integer(), "v"),
+                new CompoundStatement(
+                        new AssignmentStatement(new ValueExpression(new IntegerValue(20)), "v"),
+                        new CompoundStatement(
+                                new PrintStatement(new VariableExpression("v")), // prints 20
+                                new CompoundStatement(
+                                        new WaitStatement(new ValueExpression(new IntegerValue(10))),
+                                        new PrintStatement(
+                                                new ArithmeticExpression(3, // 3 == *
+                                                        new VariableExpression("v"),
+                                                        new ValueExpression(new IntegerValue(10))
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+        all.add(exWaitExample);
+
+
         return FXCollections.observableArrayList(all);
     }
 }
