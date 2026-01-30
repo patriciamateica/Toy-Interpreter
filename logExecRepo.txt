@@ -1,0 +1,780 @@
+ProgramState id: 1
+Step 0:
+ProgramState[id=1]
+  exeStack=ExeStack[(int v; (Ref(int) a; (v = 10; (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a)))))))],
+  symTable={},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 1:
+ProgramState[id=1]
+  exeStack=ExeStack[int v, (Ref(int) a; (v = 10; (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a))))))],
+  symTable={},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 2:
+ProgramState[id=1]
+  exeStack=ExeStack[int v, (Ref(int) a; (v = 10; (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a))))))],
+  symTable={},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 3:
+ProgramState[id=1]
+  exeStack=ExeStack[(Ref(int) a; (v = 10; (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a))))))],
+  symTable={v=0},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 4:
+ProgramState[id=1]
+  exeStack=ExeStack[(Ref(int) a; (v = 10; (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a))))))],
+  symTable={v=0},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 5:
+ProgramState[id=1]
+  exeStack=ExeStack[Ref(int) a, (v = 10; (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a)))))],
+  symTable={v=0},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 6:
+ProgramState[id=1]
+  exeStack=ExeStack[Ref(int) a, (v = 10; (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a)))))],
+  symTable={v=0},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 7:
+ProgramState[id=1]
+  exeStack=ExeStack[(v = 10; (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a)))))],
+  symTable={a=(0,int), v=0},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 8:
+ProgramState[id=1]
+  exeStack=ExeStack[(v = 10; (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a)))))],
+  symTable={a=(0,int), v=0},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 9:
+ProgramState[id=1]
+  exeStack=ExeStack[v = 10, (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a))))],
+  symTable={a=(0,int), v=0},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 10:
+ProgramState[id=1]
+  exeStack=ExeStack[v = 10, (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a))))],
+  symTable={a=(0,int), v=0},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 11:
+ProgramState[id=1]
+  exeStack=ExeStack[(new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a))))],
+  symTable={a=(0,int), v=10},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 12:
+ProgramState[id=1]
+  exeStack=ExeStack[(new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a))))],
+  symTable={a=(0,int), v=10},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 13:
+ProgramState[id=1]
+  exeStack=ExeStack[new(a, 22), (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a)))],
+  symTable={a=(0,int), v=10},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 14:
+ProgramState[id=1]
+  exeStack=ExeStack[new(a, 22), (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a)))],
+  symTable={a=(0,int), v=10},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 15:
+ProgramState[id=1]
+  exeStack=ExeStack[(fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a)))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 1
+Step 16:
+ProgramState[id=1]
+  exeStack=ExeStack[(fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a)))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 1
+Step 17:
+ProgramState[id=1]
+  exeStack=ExeStack[fork((wH(a, 30); (v = 32; (print v; print rH(a))))), (print v; print rH(a))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 1
+Step 18:
+ProgramState[id=1]
+  exeStack=ExeStack[fork((wH(a, 30); (v = 32; (print v; print rH(a))))), (print v; print rH(a))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 1
+Step 19:
+ProgramState[id=1]
+  exeStack=ExeStack[(print v; print rH(a))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 2
+Step 20:
+ProgramState[id=2]
+  exeStack=ExeStack[(wH(a, 30); (v = 32; (print v; print rH(a))))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 1
+Step 21:
+ProgramState[id=1]
+  exeStack=ExeStack[(print v; print rH(a))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 2
+Step 22:
+ProgramState[id=2]
+  exeStack=ExeStack[(wH(a, 30); (v = 32; (print v; print rH(a))))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 1
+Step 23:
+ProgramState[id=1]
+  exeStack=ExeStack[print v, print rH(a)],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 2
+Step 24:
+ProgramState[id=2]
+  exeStack=ExeStack[wH(a, 30), (v = 32; (print v; print rH(a)))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 1
+Step 25:
+ProgramState[id=1]
+  exeStack=ExeStack[print v, print rH(a)],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 2
+Step 26:
+ProgramState[id=2]
+  exeStack=ExeStack[wH(a, 30), (v = 32; (print v; print rH(a)))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 1
+Step 27:
+ProgramState[id=1]
+  exeStack=ExeStack[print rH(a)],
+  symTable={a=(1,int), v=10},
+  out=[10],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 28:
+ProgramState[id=2]
+  exeStack=ExeStack[(v = 32; (print v; print rH(a)))],
+  symTable={a=(1,int), v=10},
+  out=[10],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 1
+Step 29:
+ProgramState[id=1]
+  exeStack=ExeStack[print rH(a)],
+  symTable={a=(1,int), v=10},
+  out=[10],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 30:
+ProgramState[id=2]
+  exeStack=ExeStack[(v = 32; (print v; print rH(a)))],
+  symTable={a=(1,int), v=10},
+  out=[10],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 31:
+ProgramState[id=2]
+  exeStack=ExeStack[v = 32, (print v; print rH(a))],
+  symTable={a=(1,int), v=10},
+  out=[10, 30],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 32:
+ProgramState[id=2]
+  exeStack=ExeStack[v = 32, (print v; print rH(a))],
+  symTable={a=(1,int), v=10},
+  out=[10, 30],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 33:
+ProgramState[id=2]
+  exeStack=ExeStack[(print v; print rH(a))],
+  symTable={a=(1,int), v=32},
+  out=[10, 30],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 34:
+ProgramState[id=2]
+  exeStack=ExeStack[(print v; print rH(a))],
+  symTable={a=(1,int), v=32},
+  out=[10, 30],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 35:
+ProgramState[id=2]
+  exeStack=ExeStack[print v, print rH(a)],
+  symTable={a=(1,int), v=32},
+  out=[10, 30],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 36:
+ProgramState[id=2]
+  exeStack=ExeStack[print v, print rH(a)],
+  symTable={a=(1,int), v=32},
+  out=[10, 30],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 37:
+ProgramState[id=2]
+  exeStack=ExeStack[print rH(a)],
+  symTable={a=(1,int), v=32},
+  out=[10, 30, 32],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 38:
+ProgramState[id=2]
+  exeStack=ExeStack[print rH(a)],
+  symTable={a=(1,int), v=32},
+  out=[10, 30, 32],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 1
+Step 0:
+ProgramState[id=1]
+  exeStack=ExeStack[(int v; (Ref(int) a; (v = 10; (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a)))))))],
+  symTable={},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 1:
+ProgramState[id=1]
+  exeStack=ExeStack[int v, (Ref(int) a; (v = 10; (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a))))))],
+  symTable={},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 2:
+ProgramState[id=1]
+  exeStack=ExeStack[int v, (Ref(int) a; (v = 10; (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a))))))],
+  symTable={},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 3:
+ProgramState[id=1]
+  exeStack=ExeStack[(Ref(int) a; (v = 10; (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a))))))],
+  symTable={v=0},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 4:
+ProgramState[id=1]
+  exeStack=ExeStack[(Ref(int) a; (v = 10; (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a))))))],
+  symTable={v=0},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 5:
+ProgramState[id=1]
+  exeStack=ExeStack[Ref(int) a, (v = 10; (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a)))))],
+  symTable={v=0},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 6:
+ProgramState[id=1]
+  exeStack=ExeStack[Ref(int) a, (v = 10; (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a)))))],
+  symTable={v=0},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 7:
+ProgramState[id=1]
+  exeStack=ExeStack[(v = 10; (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a)))))],
+  symTable={a=(0,int), v=0},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 8:
+ProgramState[id=1]
+  exeStack=ExeStack[(v = 10; (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a)))))],
+  symTable={a=(0,int), v=0},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 9:
+ProgramState[id=1]
+  exeStack=ExeStack[v = 10, (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a))))],
+  symTable={a=(0,int), v=0},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 10:
+ProgramState[id=1]
+  exeStack=ExeStack[v = 10, (new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a))))],
+  symTable={a=(0,int), v=0},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 11:
+ProgramState[id=1]
+  exeStack=ExeStack[(new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a))))],
+  symTable={a=(0,int), v=10},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 12:
+ProgramState[id=1]
+  exeStack=ExeStack[(new(a, 22); (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a))))],
+  symTable={a=(0,int), v=10},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 13:
+ProgramState[id=1]
+  exeStack=ExeStack[new(a, 22), (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a)))],
+  symTable={a=(0,int), v=10},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 14:
+ProgramState[id=1]
+  exeStack=ExeStack[new(a, 22), (fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a)))],
+  symTable={a=(0,int), v=10},
+  out=[],
+  fileTable={},
+  heap={}
+
+---
+ProgramState id: 1
+Step 15:
+ProgramState[id=1]
+  exeStack=ExeStack[(fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a)))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 1
+Step 16:
+ProgramState[id=1]
+  exeStack=ExeStack[(fork((wH(a, 30); (v = 32; (print v; print rH(a))))); (print v; print rH(a)))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 1
+Step 17:
+ProgramState[id=1]
+  exeStack=ExeStack[fork((wH(a, 30); (v = 32; (print v; print rH(a))))), (print v; print rH(a))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 1
+Step 18:
+ProgramState[id=1]
+  exeStack=ExeStack[fork((wH(a, 30); (v = 32; (print v; print rH(a))))), (print v; print rH(a))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 1
+Step 19:
+ProgramState[id=1]
+  exeStack=ExeStack[(print v; print rH(a))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 2
+Step 20:
+ProgramState[id=2]
+  exeStack=ExeStack[(wH(a, 30); (v = 32; (print v; print rH(a))))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 1
+Step 21:
+ProgramState[id=1]
+  exeStack=ExeStack[(print v; print rH(a))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 2
+Step 22:
+ProgramState[id=2]
+  exeStack=ExeStack[(wH(a, 30); (v = 32; (print v; print rH(a))))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 1
+Step 23:
+ProgramState[id=1]
+  exeStack=ExeStack[print v, print rH(a)],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 2
+Step 24:
+ProgramState[id=2]
+  exeStack=ExeStack[wH(a, 30), (v = 32; (print v; print rH(a)))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 1
+Step 25:
+ProgramState[id=1]
+  exeStack=ExeStack[print v, print rH(a)],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 2
+Step 26:
+ProgramState[id=2]
+  exeStack=ExeStack[wH(a, 30), (v = 32; (print v; print rH(a)))],
+  symTable={a=(1,int), v=10},
+  out=[],
+  fileTable={},
+  heap={1=22}
+
+---
+ProgramState id: 1
+Step 27:
+ProgramState[id=1]
+  exeStack=ExeStack[print rH(a)],
+  symTable={a=(1,int), v=10},
+  out=[10],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 28:
+ProgramState[id=2]
+  exeStack=ExeStack[(v = 32; (print v; print rH(a)))],
+  symTable={a=(1,int), v=10},
+  out=[10],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 1
+Step 29:
+ProgramState[id=1]
+  exeStack=ExeStack[print rH(a)],
+  symTable={a=(1,int), v=10},
+  out=[10],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 30:
+ProgramState[id=2]
+  exeStack=ExeStack[(v = 32; (print v; print rH(a)))],
+  symTable={a=(1,int), v=10},
+  out=[10],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 31:
+ProgramState[id=2]
+  exeStack=ExeStack[v = 32, (print v; print rH(a))],
+  symTable={a=(1,int), v=10},
+  out=[10, 30],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 32:
+ProgramState[id=2]
+  exeStack=ExeStack[v = 32, (print v; print rH(a))],
+  symTable={a=(1,int), v=10},
+  out=[10, 30],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 33:
+ProgramState[id=2]
+  exeStack=ExeStack[(print v; print rH(a))],
+  symTable={a=(1,int), v=32},
+  out=[10, 30],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 34:
+ProgramState[id=2]
+  exeStack=ExeStack[(print v; print rH(a))],
+  symTable={a=(1,int), v=32},
+  out=[10, 30],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 35:
+ProgramState[id=2]
+  exeStack=ExeStack[print v, print rH(a)],
+  symTable={a=(1,int), v=32},
+  out=[10, 30],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 36:
+ProgramState[id=2]
+  exeStack=ExeStack[print v, print rH(a)],
+  symTable={a=(1,int), v=32},
+  out=[10, 30],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 37:
+ProgramState[id=2]
+  exeStack=ExeStack[print rH(a)],
+  symTable={a=(1,int), v=32},
+  out=[10, 30, 32],
+  fileTable={},
+  heap={1=30}
+
+---
+ProgramState id: 2
+Step 38:
+ProgramState[id=2]
+  exeStack=ExeStack[print rH(a)],
+  symTable={a=(1,int), v=32},
+  out=[10, 30, 32],
+  fileTable={},
+  heap={1=30}
+
+---
