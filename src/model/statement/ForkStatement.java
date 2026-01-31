@@ -1,6 +1,8 @@
 package model.statement;
 
 import exceptions.MyException;
+import model.adt.barrier.IBarrier;
+import model.adt.barrier.MyBarrierTable;
 import model.state.ProgramState;
 import model.adt.stack.IStack;
 import model.adt.stack.ExecutionStack;
@@ -24,13 +26,14 @@ public class ForkStatement implements Statement {
         IList<Value> out = state.getOut();
         FileTable fileTable = state.getFileTable();
         IHeap heap = state.getHeap();
+        IBarrier barrierTable = state.getBarrierTable();
 
         IMap<String, Value> clonedSymTable = symTable.deepCopy();
-
         IStack childStack = new ExecutionStack();
 
-        return new ProgramState(childStack, clonedSymTable, out, fileTable, statement, heap, 0);
+        return new ProgramState(childStack, clonedSymTable, out, fileTable, statement, heap, barrierTable, 0);
     }
+
     /*
     * - this method is responsible for creating a new ProgramState that represents a child thread of execution
     * - the current program's state is duplicated and a new execution stack is created for the child

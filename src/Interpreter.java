@@ -1,4 +1,6 @@
 import exceptions.TypeCheckFailedException;
+import model.adt.barrier.IBarrier;
+import model.adt.barrier.MyBarrierTable;
 import model.adt.dictfile.FileTable;
 import model.adt.dictfile.MapFileTable;
 import model.adt.heap.IHeap;
@@ -357,8 +359,9 @@ public class Interpreter {
         IList out = new ListOut();
         FileTable fileTable = new MapFileTable();
         IHeap heap = new MyHeap();
+        IBarrier barrierTable = new MyBarrierTable();
         stack.push(program);
-        return new ProgramState(stack, symTable, out, fileTable, heap, 0);
+        return new ProgramState(stack, symTable, out, fileTable, heap, barrierTable, 0);
     }
 
 

@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import model.adt.barrier.IBarrier;
+import model.adt.barrier.MyBarrierTable;
 import model.adt.dictfile.FileTable;
 import model.adt.dictfile.MapFileTable;
 import model.adt.heap.IHeap;
@@ -72,8 +74,8 @@ public class ProgramChooserController {
             IList<Value> out = new ListOut<>();
             FileTable fileTable = new MapFileTable();
             IHeap<Value> heap = new MyHeap<>();
-
-            ProgramState programState = new ProgramState(stack, symTable, out, fileTable, selected, heap, 0);
+            IBarrier barrierTable = new MyBarrierTable();
+            ProgramState programState = new ProgramState(stack, symTable, out, fileTable, selected, heap, barrierTable, 0);
 
             IRepository repo = new SingleProgramRepository();
             List<ProgramState> list = new ArrayList<>();
@@ -341,6 +343,61 @@ public class ProgramChooserController {
                 )
         );
         all.add(ex11);
+        Statement barrierExample = new CompoundStatement(
+                new VariableDeclarationStatement(new RefType(new Integer()), "v1"),
+                new CompoundStatement(
+                        new VariableDeclarationStatement(new RefType(new Integer()), "v2"),
+                        new CompoundStatement(
+                                new VariableDeclarationStatement(new RefType(new Integer()), "v3"),
+                                new CompoundStatement(
+                                        new VariableDeclarationStatement(new Integer(), "cnt"),
+                                        new CompoundStatement(
+                                                new newStatement("v1", new ValueExpression(new IntegerValue(2))),
+                                                new CompoundStatement(
+                                                        new newStatement("v2", new ValueExpression(new IntegerValue(3))),
+                                                        new CompoundStatement(
+                                                                new newStatement("v3", new ValueExpression(new IntegerValue(4))),
+                                                                new CompoundStatement(
+                                                                        new NewBarrierStatement("cnt", new rhExpression(new VariableExpression("v2"))),
+                                                                        new CompoundStatement(
+                                                                                new ForkStatement(
+                                                                                        new CompoundStatement(
+                                                                                                new AwaitStatement("cnt"),
+                                                                                                new CompoundStatement(
+                                                                                                        new whStatement("v1", new ArithmeticExpression(3, new rhExpression(new VariableExpression("v1")), new ValueExpression(new IntegerValue(10)))),
+                                                                                                        new PrintStatement(new rhExpression(new VariableExpression("v1")))
+                                                                                                )
+                                                                                        )
+                                                                                ),
+                                                                                new CompoundStatement(
+                                                                                        new ForkStatement(
+                                                                                                new CompoundStatement(
+                                                                                                        new AwaitStatement("cnt"),
+                                                                                                        new CompoundStatement(
+                                                                                                                new whStatement("v2", new ArithmeticExpression(3, new rhExpression(new VariableExpression("v2")), new ValueExpression(new IntegerValue(10)))),
+                                                                                                                new CompoundStatement(
+                                                                                                                        new whStatement("v2", new ArithmeticExpression(3, new rhExpression(new VariableExpression("v2")), new ValueExpression(new IntegerValue(10)))),
+                                                                                                                        new PrintStatement(new rhExpression(new VariableExpression("v2")))
+                                                                                                                )
+                                                                                                        )
+                                                                                                )
+                                                                                        ),
+                                                                                        new CompoundStatement(
+                                                                                                new AwaitStatement("cnt"),
+                                                                                                new PrintStatement(new rhExpression(new VariableExpression("v3")))
+                                                                                        )
+                                                                                )
+                                                                        )
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                )
+                        ))
+        );
+        all.add(barrierExample);
+
+
 
         return FXCollections.observableArrayList(all);
     }

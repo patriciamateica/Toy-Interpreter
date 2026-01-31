@@ -2,6 +2,7 @@ package view.gui;
 
 import controller.Controller;
 import javafx.application.Platform;
+import model.adt.barrier.IBarrier;
 import model.adt.dictfile.FileTable;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -74,6 +75,42 @@ public class ProgramExecutorController {
     @FXML
     private TextArea outputTextArea;
 
+    @FXML
+    private TableView<BarrierEntry> barrierTableView;
+
+    @FXML
+    private TableColumn<BarrierEntry, Integer> barrierIndexColumn;
+
+    @FXML
+    private TableColumn<BarrierEntry, Integer> barrierValueColumn;
+
+    @FXML
+    private TableColumn<BarrierEntry, String> barrierListColumn;
+
+    public static class BarrierEntry {
+        private final SimpleIntegerProperty index;
+        private final SimpleIntegerProperty value;
+        private final SimpleStringProperty values;
+
+        public BarrierEntry(int index, int value, List<Integer> values) {
+            this.index = new SimpleIntegerProperty(index);
+            this.value = new SimpleIntegerProperty(value);
+            this.values = new SimpleStringProperty(values.toString());
+        }
+
+        public int getIndex() {
+            return index.get();
+        }
+
+        public int getValue() {
+            return value.get();
+        }
+
+        public String getValues() {
+            return values.get();
+        }
+    }
+
 
     public void setController(Controller controller) {
         this.controller = controller;
@@ -88,6 +125,9 @@ public class ProgramExecutorController {
         valueColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().second.toString()));
         variableNameColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().first));
         variableValueColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().second.toString()));
+        barrierIndexColumn.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().getIndex()).asObject());
+        barrierValueColumn.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().getValue()).asObject());
+        barrierListColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getValues()));
     }
 
     private ProgramState getCurrentProgramState() {
@@ -110,10 +150,14 @@ public class ProgramExecutorController {
         populateProgramStateIdentifiersListView();
         populateSymbolTableView();
         populateExecutionStackListView();
+        populateBarrierTableView();
     }
 
     @FXML
     private void changeProgramState(MouseEvent event) {
+        if (controller == null) {
+            return;
+        }
         populateExecutionStackListView();
         populateSymbolTableView();
     }
@@ -235,6 +279,23 @@ public class ProgramExecutorController {
         }
         executionStackListView.setItems(FXCollections.observableList(executionStackToString));
     }
+
+    private void populateBarrierTableView() {
+        ProgramState programState = getCurrentProgramState();
+        if (programState == null) {
+            barrierTableView.setItems(FXCollections.observableArrayList());
+            return;
+        }
+        IBarrier barrierTable = programState.getBarrierTable();
+        List<BarrierEntry> barrierList = new ArrayList<>();
+        if (barrierTable != null) {
+            for (Map.Entry<Integer, model.adt.barrier.Pair<Integer, List<Integer>>> entry : barrierTable.getContent().entrySet()) {
+                barrierList.add(new BarrierEntry(entry.getKey(), entry.getValue().getFirst(), entry.getValue().getSecond()));
+            }
+        }
+        barrierTableView.setItems(FXCollections.observableList(barrierList));
+    }
+
 
     @FXML
     private void runOneStep(MouseEvent mouseEvent) {
