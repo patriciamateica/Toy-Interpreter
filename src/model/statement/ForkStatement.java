@@ -8,6 +8,7 @@ import model.adt.map.IMap;
 import model.adt.list.IList;
 import model.adt.dictfile.FileTable;
 import model.adt.heap.IHeap;
+import model.adt.latch.ILatch;
 import model.value.Value;
 import model.type.Type;
 
@@ -23,19 +24,15 @@ public class ForkStatement implements Statement {
         IMap<String, Value> symTable = state.getSymTable();
         IList<Value> out = state.getOut();
         FileTable fileTable = state.getFileTable();
-        IHeap heap = state.getHeap();
+        IHeap<Value> heap = state.getHeap();
+        ILatch latchTable = state.getLatchTable();
 
         IMap<String, Value> clonedSymTable = symTable.deepCopy();
 
         IStack childStack = new ExecutionStack();
 
-        return new ProgramState(childStack, clonedSymTable, out, fileTable, statement, heap, 0);
+        return new ProgramState(childStack, clonedSymTable, out, fileTable, statement, heap, latchTable);
     }
-    /*
-    * - this method is responsible for creating a new ProgramState that represents a child thread of execution
-    * - the current program's state is duplicated and a new execution stack is created for the child
-    * - the symbol table is deep-copied to ensure that the child thread has its own copy of variables and doesn't play with the ones the parent has
-     */
 
     @Override
     public IMap<String, Type> typecheck(IMap<String, Type> typeEnv) throws MyException {

@@ -778,3 +778,2060 @@ ProgramState[id=2]
   heap={1=30}
 
 ---
+ProgramState id: 8
+Step 0:
+ID: 8
+ExeStack: ExeStack[(Ref(int) v1; (Ref(int) v2; (Ref(int) v3; (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))))))))))))]
+SymTable: {}
+Out: []
+FileTable: {}
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 1:
+ID: 8
+ExeStack: ExeStack[Ref(int) v1, (Ref(int) v2; (Ref(int) v3; (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))))))))))]
+SymTable: {}
+Out: []
+FileTable: {}
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 2:
+ID: 8
+ExeStack: ExeStack[Ref(int) v1, (Ref(int) v2; (Ref(int) v3; (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))))))))))]
+SymTable: {}
+Out: []
+FileTable: {}
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 3:
+ID: 8
+ExeStack: ExeStack[(Ref(int) v2; (Ref(int) v3; (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))))))))))]
+SymTable: {v1=(0,int)}
+Out: []
+FileTable: {}
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 4:
+ID: 8
+ExeStack: ExeStack[(Ref(int) v2; (Ref(int) v3; (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))))))))))]
+SymTable: {v1=(0,int)}
+Out: []
+FileTable: {}
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 5:
+ID: 8
+ExeStack: ExeStack[Ref(int) v2, (Ref(int) v3; (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))))))))))]
+SymTable: {v1=(0,int)}
+Out: []
+FileTable: {}
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 6:
+ID: 8
+ExeStack: ExeStack[Ref(int) v2, (Ref(int) v3; (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))))))))))]
+SymTable: {v1=(0,int)}
+Out: []
+FileTable: {}
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 7:
+ID: 8
+ExeStack: ExeStack[(Ref(int) v3; (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))))))))))]
+SymTable: {v1=(0,int), v2=(0,int)}
+Out: []
+FileTable: {}
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 8:
+ID: 8
+ExeStack: ExeStack[(Ref(int) v3; (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))))))))))]
+SymTable: {v1=(0,int), v2=(0,int)}
+Out: []
+FileTable: {}
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 9:
+ID: 8
+ExeStack: ExeStack[Ref(int) v3, (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))))))))]
+SymTable: {v1=(0,int), v2=(0,int)}
+Out: []
+FileTable: {}
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 10:
+ID: 8
+ExeStack: ExeStack[Ref(int) v3, (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))))))))]
+SymTable: {v1=(0,int), v2=(0,int)}
+Out: []
+FileTable: {}
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 11:
+ID: 8
+ExeStack: ExeStack[(int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))))))))]
+SymTable: {v1=(0,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: {}
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 12:
+ID: 8
+ExeStack: ExeStack[(int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))))))))]
+SymTable: {v1=(0,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: {}
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 13:
+ID: 8
+ExeStack: ExeStack[int cnt, (new(v1, 2); (new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))))))))]
+SymTable: {v1=(0,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: {}
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 14:
+ID: 8
+ExeStack: ExeStack[int cnt, (new(v1, 2); (new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))))))))]
+SymTable: {v1=(0,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: {}
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 15:
+ID: 8
+ExeStack: ExeStack[(new(v1, 2); (new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))))))))]
+SymTable: {cnt=0, v1=(0,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: {}
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 16:
+ID: 8
+ExeStack: ExeStack[(new(v1, 2); (new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))))))))]
+SymTable: {cnt=0, v1=(0,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: {}
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 17:
+ID: 8
+ExeStack: ExeStack[new(v1, 2), (new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))))))]
+SymTable: {cnt=0, v1=(0,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: {}
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 18:
+ID: 8
+ExeStack: ExeStack[new(v1, 2), (new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))))))]
+SymTable: {cnt=0, v1=(0,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: {}
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 19:
+ID: 8
+ExeStack: ExeStack[(new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))))))]
+SymTable: {cnt=0, v1=(1,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: {}
+Heap: {1=2}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 20:
+ID: 8
+ExeStack: ExeStack[(new(v2, 3); (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))))))]
+SymTable: {cnt=0, v1=(1,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: {}
+Heap: {1=2}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 21:
+ID: 8
+ExeStack: ExeStack[new(v2, 3), (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))))))]
+SymTable: {cnt=0, v1=(1,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: {}
+Heap: {1=2}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 22:
+ID: 8
+ExeStack: ExeStack[new(v2, 3), (new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))))))]
+SymTable: {cnt=0, v1=(1,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: {}
+Heap: {1=2}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 23:
+ID: 8
+ExeStack: ExeStack[(new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))))))]
+SymTable: {cnt=0, v1=(1,int), v2=(2,int), v3=(0,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 24:
+ID: 8
+ExeStack: ExeStack[(new(v3, 4); (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))))))]
+SymTable: {cnt=0, v1=(1,int), v2=(2,int), v3=(0,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 25:
+ID: 8
+ExeStack: ExeStack[new(v3, 4), (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))))]
+SymTable: {cnt=0, v1=(1,int), v2=(2,int), v3=(0,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 26:
+ID: 8
+ExeStack: ExeStack[new(v3, 4), (newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))))]
+SymTable: {cnt=0, v1=(1,int), v2=(2,int), v3=(0,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 27:
+ID: 8
+ExeStack: ExeStack[(newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))))]
+SymTable: {cnt=0, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 28:
+ID: 8
+ExeStack: ExeStack[(newLatch(cnt, rH(v2)); (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))))]
+SymTable: {cnt=0, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 29:
+ID: 8
+ExeStack: ExeStack[newLatch(cnt, rH(v2)), (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))))]
+SymTable: {cnt=0, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 30:
+ID: 8
+ExeStack: ExeStack[newLatch(cnt, rH(v2)), (fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))))]
+SymTable: {cnt=0, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 31:
+ID: 8
+ExeStack: ExeStack[(fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 32:
+ID: 8
+ExeStack: ExeStack[(fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))); (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 33:
+ID: 8
+ExeStack: ExeStack[fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))), (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 34:
+ID: 8
+ExeStack: ExeStack[fork((wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))), (fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 35:
+ID: 8
+ExeStack: ExeStack[(fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 9
+Step 36:
+ID: 9
+ExeStack: ExeStack[(wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 37:
+ID: 8
+ExeStack: ExeStack[(fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))); (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100)))))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 9
+Step 38:
+ID: 9
+ExeStack: ExeStack[(wH(v1, (rH(v1) * 10)); (print rH(v1); countDown(cnt)))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 39:
+ID: 8
+ExeStack: ExeStack[fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))), (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 9
+Step 40:
+ID: 9
+ExeStack: ExeStack[wH(v1, (rH(v1) * 10)), (print rH(v1); countDown(cnt))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 41:
+ID: 8
+ExeStack: ExeStack[fork((wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))), (fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 9
+Step 42:
+ID: 9
+ExeStack: ExeStack[wH(v1, (rH(v1) * 10)), (print rH(v1); countDown(cnt))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 43:
+ID: 8
+ExeStack: ExeStack[(fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 9
+Step 44:
+ID: 9
+ExeStack: ExeStack[(print rH(v1); countDown(cnt))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 10
+Step 45:
+ID: 10
+ExeStack: ExeStack[(wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 46:
+ID: 8
+ExeStack: ExeStack[(fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))); (await(cnt); (print 100; (countDown(cnt); print 100))))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 9
+Step 47:
+ID: 9
+ExeStack: ExeStack[(print rH(v1); countDown(cnt))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 10
+Step 48:
+ID: 10
+ExeStack: ExeStack[(wH(v2, (rH(v2) * 10)); (print rH(v2); countDown(cnt)))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 49:
+ID: 8
+ExeStack: ExeStack[fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))), (await(cnt); (print 100; (countDown(cnt); print 100)))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 9
+Step 50:
+ID: 9
+ExeStack: ExeStack[print rH(v1), countDown(cnt)]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 10
+Step 51:
+ID: 10
+ExeStack: ExeStack[wH(v2, (rH(v2) * 10)), (print rH(v2); countDown(cnt))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 52:
+ID: 8
+ExeStack: ExeStack[fork((wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))), (await(cnt); (print 100; (countDown(cnt); print 100)))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 9
+Step 53:
+ID: 9
+ExeStack: ExeStack[print rH(v1), countDown(cnt)]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 10
+Step 54:
+ID: 10
+ExeStack: ExeStack[wH(v2, (rH(v2) * 10)), (print rH(v2); countDown(cnt))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: {}
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 55:
+ID: 8
+ExeStack: ExeStack[(await(cnt); (print 100; (countDown(cnt); print 100)))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20]
+FileTable: {}
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 9
+Step 56:
+ID: 9
+ExeStack: ExeStack[countDown(cnt)]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20]
+FileTable: {}
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 10
+Step 57:
+ID: 10
+ExeStack: ExeStack[(print rH(v2); countDown(cnt))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20]
+FileTable: {}
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 11
+Step 58:
+ID: 11
+ExeStack: ExeStack[(wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20]
+FileTable: {}
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 59:
+ID: 8
+ExeStack: ExeStack[(await(cnt); (print 100; (countDown(cnt); print 100)))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20]
+FileTable: {}
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 9
+Step 60:
+ID: 9
+ExeStack: ExeStack[countDown(cnt)]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20]
+FileTable: {}
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 10
+Step 61:
+ID: 10
+ExeStack: ExeStack[(print rH(v2); countDown(cnt))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20]
+FileTable: {}
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 11
+Step 62:
+ID: 11
+ExeStack: ExeStack[(wH(v3, (rH(v3) * 10)); (print rH(v3); countDown(cnt)))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20]
+FileTable: {}
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 63:
+ID: 8
+ExeStack: ExeStack[await(cnt), (print 100; (countDown(cnt); print 100))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9]
+FileTable: {}
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 10
+Step 64:
+ID: 10
+ExeStack: ExeStack[print rH(v2), countDown(cnt)]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9]
+FileTable: {}
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 11
+Step 65:
+ID: 11
+ExeStack: ExeStack[wH(v3, (rH(v3) * 10)), (print rH(v3); countDown(cnt))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9]
+FileTable: {}
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 66:
+ID: 8
+ExeStack: ExeStack[await(cnt), (print 100; (countDown(cnt); print 100))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9]
+FileTable: {}
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 10
+Step 67:
+ID: 10
+ExeStack: ExeStack[print rH(v2), countDown(cnt)]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9]
+FileTable: {}
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 11
+Step 68:
+ID: 11
+ExeStack: ExeStack[wH(v3, (rH(v3) * 10)), (print rH(v3); countDown(cnt))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9]
+FileTable: {}
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 69:
+ID: 8
+ExeStack: ExeStack[await(cnt), (print 100; (countDown(cnt); print 100))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 10
+Step 70:
+ID: 10
+ExeStack: ExeStack[countDown(cnt)]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 11
+Step 71:
+ID: 11
+ExeStack: ExeStack[(print rH(v3); countDown(cnt))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 72:
+ID: 8
+ExeStack: ExeStack[await(cnt), (print 100; (countDown(cnt); print 100))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 10
+Step 73:
+ID: 10
+ExeStack: ExeStack[countDown(cnt)]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 11
+Step 74:
+ID: 11
+ExeStack: ExeStack[(print rH(v3); countDown(cnt))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 75:
+ID: 8
+ExeStack: ExeStack[await(cnt), (print 100; (countDown(cnt); print 100))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30, 10]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 11
+Step 76:
+ID: 11
+ExeStack: ExeStack[print rH(v3), countDown(cnt)]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30, 10]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 77:
+ID: 8
+ExeStack: ExeStack[await(cnt), (print 100; (countDown(cnt); print 100))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30, 10]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 11
+Step 78:
+ID: 11
+ExeStack: ExeStack[print rH(v3), countDown(cnt)]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30, 10]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 79:
+ID: 8
+ExeStack: ExeStack[await(cnt), (print 100; (countDown(cnt); print 100))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30, 10, 40]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 11
+Step 80:
+ID: 11
+ExeStack: ExeStack[countDown(cnt)]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30, 10, 40]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 81:
+ID: 8
+ExeStack: ExeStack[await(cnt), (print 100; (countDown(cnt); print 100))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30, 10, 40]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 11
+Step 82:
+ID: 11
+ExeStack: ExeStack[countDown(cnt)]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30, 10, 40]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 83:
+ID: 8
+ExeStack: ExeStack[await(cnt), (print 100; (countDown(cnt); print 100))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30, 10, 40, 11]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 84:
+ID: 8
+ExeStack: ExeStack[await(cnt), (print 100; (countDown(cnt); print 100))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30, 10, 40, 11]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 85:
+ID: 8
+ExeStack: ExeStack[(print 100; (countDown(cnt); print 100))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30, 10, 40, 11]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 86:
+ID: 8
+ExeStack: ExeStack[(print 100; (countDown(cnt); print 100))]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30, 10, 40, 11]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 87:
+ID: 8
+ExeStack: ExeStack[print 100, (countDown(cnt); print 100)]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30, 10, 40, 11]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 88:
+ID: 8
+ExeStack: ExeStack[print 100, (countDown(cnt); print 100)]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30, 10, 40, 11]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 89:
+ID: 8
+ExeStack: ExeStack[(countDown(cnt); print 100)]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30, 10, 40, 11, 100]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 90:
+ID: 8
+ExeStack: ExeStack[(countDown(cnt); print 100)]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30, 10, 40, 11, 100]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 8
+Step 91:
+ID: 8
+ExeStack: ExeStack[countDown(cnt), print 100]
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 9, 30, 10, 40, 11, 100]
+FileTable: {}
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@2d14c39f
+
+---
+ProgramState id: 0
+Step 0:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 1:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 2:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 3:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {v1=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 4:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {v1=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 5:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {v1=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 6:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {v1=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 7:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {v1=(0,int), v2=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 8:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {v1=(0,int), v2=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 9:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {v1=(0,int), v2=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 10:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {v1=(0,int), v2=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 11:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {v1=(0,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 12:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {v1=(0,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 13:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {v1=(0,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 14:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {v1=(0,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 15:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=0, v1=(0,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 16:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=0, v1=(0,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 17:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=0, v1=(0,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 18:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=0, v1=(0,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 19:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=0, v1=(1,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 20:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=0, v1=(1,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 21:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=0, v1=(1,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 22:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=0, v1=(1,int), v2=(0,int), v3=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 23:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=0, v1=(1,int), v2=(2,int), v3=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 24:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=0, v1=(1,int), v2=(2,int), v3=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 25:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=0, v1=(1,int), v2=(2,int), v3=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 26:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=0, v1=(1,int), v2=(2,int), v3=(0,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 27:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=0, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 28:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=0, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 29:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=0, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 30:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=0, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 31:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 32:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 33:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 34:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 35:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 1
+Step 36:
+ID: 1
+ExeStack: model.adt.stack.ExecutionStack@67283a06
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 37:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 1
+Step 38:
+ID: 1
+ExeStack: model.adt.stack.ExecutionStack@67283a06
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 39:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 1
+Step 40:
+ID: 1
+ExeStack: model.adt.stack.ExecutionStack@67283a06
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 41:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 1
+Step 42:
+ID: 1
+ExeStack: model.adt.stack.ExecutionStack@67283a06
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=2, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 43:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 1
+Step 44:
+ID: 1
+ExeStack: model.adt.stack.ExecutionStack@67283a06
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 2
+Step 45:
+ID: 2
+ExeStack: model.adt.stack.ExecutionStack@44e04b7d
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 46:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 1
+Step 47:
+ID: 1
+ExeStack: model.adt.stack.ExecutionStack@67283a06
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 2
+Step 48:
+ID: 2
+ExeStack: model.adt.stack.ExecutionStack@44e04b7d
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 49:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 1
+Step 50:
+ID: 1
+ExeStack: model.adt.stack.ExecutionStack@67283a06
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 2
+Step 51:
+ID: 2
+ExeStack: model.adt.stack.ExecutionStack@44e04b7d
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 52:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 1
+Step 53:
+ID: 1
+ExeStack: model.adt.stack.ExecutionStack@67283a06
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 2
+Step 54:
+ID: 2
+ExeStack: model.adt.stack.ExecutionStack@44e04b7d
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: []
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=3, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 55:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 1
+Step 56:
+ID: 1
+ExeStack: model.adt.stack.ExecutionStack@67283a06
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 2
+Step 57:
+ID: 2
+ExeStack: model.adt.stack.ExecutionStack@44e04b7d
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 3
+Step 58:
+ID: 3
+ExeStack: model.adt.stack.ExecutionStack@295dbd3e
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 59:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 1
+Step 60:
+ID: 1
+ExeStack: model.adt.stack.ExecutionStack@67283a06
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 2
+Step 61:
+ID: 2
+ExeStack: model.adt.stack.ExecutionStack@44e04b7d
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 3
+Step 62:
+ID: 3
+ExeStack: model.adt.stack.ExecutionStack@295dbd3e
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 63:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 2
+Step 64:
+ID: 2
+ExeStack: model.adt.stack.ExecutionStack@44e04b7d
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 3
+Step 65:
+ID: 3
+ExeStack: model.adt.stack.ExecutionStack@295dbd3e
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 66:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 2
+Step 67:
+ID: 2
+ExeStack: model.adt.stack.ExecutionStack@44e04b7d
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 3
+Step 68:
+ID: 3
+ExeStack: model.adt.stack.ExecutionStack@295dbd3e
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=4}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 69:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 2
+Step 70:
+ID: 2
+ExeStack: model.adt.stack.ExecutionStack@44e04b7d
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 3
+Step 71:
+ID: 3
+ExeStack: model.adt.stack.ExecutionStack@295dbd3e
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 72:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 2
+Step 73:
+ID: 2
+ExeStack: model.adt.stack.ExecutionStack@44e04b7d
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 3
+Step 74:
+ID: 3
+ExeStack: model.adt.stack.ExecutionStack@295dbd3e
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 75:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 3
+Step 76:
+ID: 3
+ExeStack: model.adt.stack.ExecutionStack@295dbd3e
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 77:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 3
+Step 78:
+ID: 3
+ExeStack: model.adt.stack.ExecutionStack@295dbd3e
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 79:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2, 40]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 3
+Step 80:
+ID: 3
+ExeStack: model.adt.stack.ExecutionStack@295dbd3e
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2, 40]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 81:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2, 40]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 3
+Step 82:
+ID: 3
+ExeStack: model.adt.stack.ExecutionStack@295dbd3e
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2, 40]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 83:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2, 40, 3]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 84:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2, 40, 3]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 85:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2, 40, 3]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 86:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2, 40, 3]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 87:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2, 40, 3]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 88:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2, 40, 3]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 89:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2, 40, 3, 100]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 90:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2, 40, 3, 100]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 91:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2, 40, 3, 100]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 92:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2, 40, 3, 100]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 93:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2, 40, 3, 100, 0]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---
+ProgramState id: 0
+Step 94:
+ID: 0
+ExeStack: model.adt.stack.ExecutionStack@694112f5
+SymTable: {cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)}
+Out: [20, 1, 30, 2, 40, 3, 100, 0]
+FileTable: model.adt.dictfile.MapFileTable@13268770
+Heap: {1=20, 2=30, 3=40}
+LatchTable: model.adt.latch.MyLatchTable@5b3ffbdf
+
+---

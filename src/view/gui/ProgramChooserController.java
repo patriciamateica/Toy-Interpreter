@@ -11,6 +11,8 @@ import model.adt.dictfile.FileTable;
 import model.adt.dictfile.MapFileTable;
 import model.adt.heap.IHeap;
 import model.adt.heap.MyHeap;
+import model.adt.latch.ILatch;
+import model.adt.latch.MyLatchTable;
 import model.adt.list.IList;
 import model.adt.list.ListOut;
 import model.adt.map.IMap;
@@ -72,8 +74,9 @@ public class ProgramChooserController {
             IList<Value> out = new ListOut<>();
             FileTable fileTable = new MapFileTable();
             IHeap<Value> heap = new MyHeap<>();
+            ILatch latchTable = new MyLatchTable();
 
-            ProgramState programState = new ProgramState(stack, symTable, out, fileTable, selected, heap, 0);
+            ProgramState programState = new ProgramState(stack, symTable, out, fileTable, selected, heap, latchTable);
 
             IRepository repo = new SingleProgramRepository();
             List<ProgramState> list = new ArrayList<>();
@@ -309,31 +312,55 @@ public class ProgramChooserController {
         );
         all.add(ex10);
 
-        // Example 11: fork example from Interpreter (complex)
+        // Example 11: Latch example
         Statement ex11 = new CompoundStatement(
-                new VariableDeclarationStatement(new Integer(), "v"),
-                new CompoundStatement(
-                        new VariableDeclarationStatement(new RefType(new Integer()), "a"),
-                        new CompoundStatement(
-                                new AssignmentStatement(new ValueExpression(new IntegerValue(10)), "v"),
-                                new CompoundStatement(
-                                        new newStatement("a", new ValueExpression(new IntegerValue(22))),
-                                        new CompoundStatement(
-                                                new ForkStatement(
-                                                        new CompoundStatement(
-                                                                new whStatement("a", new ValueExpression(new IntegerValue(30))),
-                                                                new CompoundStatement(
-                                                                        new AssignmentStatement(new ValueExpression(new IntegerValue(32)), "v"),
+                new VariableDeclarationStatement(new RefType(new Integer()), "v1"),
+                new CompoundStatement(new VariableDeclarationStatement(new RefType(new Integer()), "v2"),
+                        new CompoundStatement(new VariableDeclarationStatement(new RefType(new Integer()), "v3"),
+                                new CompoundStatement(new VariableDeclarationStatement(new Integer(), "cnt"),
+                                        new CompoundStatement(new newStatement("v1", new ValueExpression(new IntegerValue(2))),
+                                                new CompoundStatement(new newStatement("v2", new ValueExpression(new IntegerValue(3))),
+                                                        new CompoundStatement(new newStatement("v3", new ValueExpression(new IntegerValue(4))),
+                                                                new CompoundStatement(new NewLatchStatement("cnt", new rhExpression(new VariableExpression("v2"))),
                                                                         new CompoundStatement(
-                                                                                new PrintStatement(new VariableExpression("v")),
-                                                                                new PrintStatement(new rhExpression(new VariableExpression("a")))
+                                                                                new ForkStatement(
+                                                                                        new CompoundStatement(new whStatement("v1", new ArithmeticExpression(3, new rhExpression(new VariableExpression("v1")), new ValueExpression(new IntegerValue(10)))),
+                                                                                                new CompoundStatement(new PrintStatement(new rhExpression(new VariableExpression("v1"))),
+                                                                                                        new CountDownStatement("cnt")
+                                                                                                )
+                                                                                        )
+                                                                                ),
+                                                                                new CompoundStatement(
+                                                                                        new ForkStatement(
+                                                                                                new CompoundStatement(new whStatement("v2", new ArithmeticExpression(3, new rhExpression(new VariableExpression("v2")), new ValueExpression(new IntegerValue(10)))),
+                                                                                                        new CompoundStatement(new PrintStatement(new rhExpression(new VariableExpression("v2"))),
+                                                                                                                new CountDownStatement("cnt")
+                                                                                                        )
+                                                                                                )
+                                                                                        ),
+                                                                                        new CompoundStatement(
+                                                                                                new ForkStatement(
+                                                                                                        new CompoundStatement(new whStatement("v3", new ArithmeticExpression(3, new rhExpression(new VariableExpression("v3")), new ValueExpression(new IntegerValue(10)))),
+                                                                                                                new CompoundStatement(new PrintStatement(new rhExpression(new VariableExpression("v3"))),
+                                                                                                                        new CountDownStatement("cnt")
+                                                                                                                )
+                                                                                                        )
+                                                                                                ),
+                                                                                                new CompoundStatement(
+                                                                                                        new AwaitStatement("cnt"),
+                                                                                                        new CompoundStatement(
+                                                                                                                new PrintStatement(new ValueExpression(new IntegerValue(100))),
+                                                                                                                new CompoundStatement(
+                                                                                                                        new CountDownStatement("cnt"),
+                                                                                                                        new PrintStatement(new ValueExpression(new IntegerValue(100)))
+                                                                                                                )
+                                                                                                        )
+                                                                                                )
+                                                                                        )
+                                                                                )
                                                                         )
                                                                 )
                                                         )
-                                                ),
-                                                new CompoundStatement(
-                                                        new PrintStatement(new VariableExpression("v")),
-                                                        new PrintStatement(new rhExpression(new VariableExpression("a")))
                                                 )
                                         )
                                 )

@@ -2,6 +2,7 @@ package model.adt.dictfile;
 import exceptions.FileAlreadyOpenException;
 
 import java.io.BufferedReader;
+import java.util.Map;
 
 public interface FileTable {
     boolean isOpen(String fileName);
@@ -10,5 +11,6 @@ public interface FileTable {
 
     BufferedReader getOpenFile(String fileName);
     void closeFile(String fileName);
+    Map<String, BufferedReader> getContent();
 
 }

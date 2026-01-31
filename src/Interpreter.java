@@ -3,6 +3,8 @@ import model.adt.dictfile.FileTable;
 import model.adt.dictfile.MapFileTable;
 import model.adt.heap.IHeap;
 import model.adt.heap.MyHeap;
+import model.adt.latch.ILatch;
+import model.adt.latch.MyLatchTable;
 import model.adt.list.ListOut;
 import model.adt.list.IList;
 import model.adt.map.MapSymbolTable;
@@ -155,13 +157,8 @@ public class Interpreter {
                                                 new VariableDeclarationStatement(new Boolean(), "res"),
                                                 new CompoundStatement(
                                                         new AssignmentStatement(
-                                                                new model.expression.RelationalExpression(
-                                                                        "<",
-                                                                        new VariableExpression("a"),
-                                                                        new VariableExpression("b")
-                                                                ),
-                                                                "res"
-                                                        ),
+                                                                new model.expression.RelationalExpression(">", new VariableExpression("a"), new VariableExpression("b")),
+                                                                "res"),
                                                         new PrintStatement(new VariableExpression("res"))
                                                 )
                                         )
@@ -357,8 +354,9 @@ public class Interpreter {
         IList out = new ListOut();
         FileTable fileTable = new MapFileTable();
         IHeap heap = new MyHeap();
+        ILatch latchTable = new MyLatchTable();
         stack.push(program);
-        return new ProgramState(stack, symTable, out, fileTable, heap, 0);
+        return new ProgramState(stack, symTable, out, fileTable, program, heap, latchTable);
     }
 
 

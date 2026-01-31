@@ -78,6 +78,22 @@
                     </VBox.margin>
                 </ListView>
             </VBox>
+            <VBox alignment="TOP_CENTER">
+                <HBox.margin>
+                    <Insets left="5.0" right="5.0" />
+                </HBox.margin>
+                <Label text="LatchTable" textFill="#03818f">
+                    <font>
+                        <Font name="0xProto Nerd Font" size="12.0" />
+                    </font>
+                </Label>
+                <TableView fx:id="latchTableView" prefHeight="200.0" prefWidth="200.0" style="-fx-font-family: &quot;0xProto Nerd Font Mono&quot;;">
+                    <columns>
+                        <TableColumn fx:id="latchLocationColumn" prefWidth="75.0" text="Location" />
+                        <TableColumn fx:id="latchValueColumn" prefWidth="75.0" text="Value" />
+                    </columns>
+                </TableView>
+            </VBox>
         </HBox>
         <HBox alignment="TOP_CENTER">
             <VBox.margin>

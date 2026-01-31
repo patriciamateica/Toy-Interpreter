@@ -1,293 +1,191 @@
 package view.gui;
 
 import controller.Controller;
-import javafx.application.Platform;
-import model.adt.dictfile.FileTable;
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 import exceptions.MyException;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import model.adt.stack.IStack;
 import model.state.ProgramState;
-import model.adt.heap.IHeap;
 import model.value.Value;
-import model.adt.map.IMap;
+import model.statement.Statement;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
-class Pair<T1, T2> {
-    T1 first;
-    T2 second;
-
-    public Pair(T1 first, T2 second) {
-        this.first = first;
-        this.second = second;
-    }
-}
-
 public class ProgramExecutorController {
+
     private Controller controller;
 
     @FXML
     private TextField numberOfProgramStatesTextField;
-
     @FXML
-    private TableView<Pair<Integer, Value>> heapTableView;
-
+    private TableView<Map.Entry<Integer, Value>> heapTableView;
     @FXML
-    private TableColumn<Pair<Integer, Value>, Integer> addressColumn;
-
+    private TableColumn<Map.Entry<Integer, Value>, Integer> addressColumn;
     @FXML
-    private TableColumn<Pair<Integer, Value>, String> valueColumn;
-
+    private TableColumn<Map.Entry<Integer, Value>, String> valueColumn;
     @FXML
     private ListView<String> outputListView;
-
     @FXML
     private ListView<String> fileTableListView;
-
     @FXML
     private ListView<Integer> programStateIdentifiersListView;
-
     @FXML
-    private TableView<Pair<String, Value>> symbolTableView;
-
+    private TableView<Map.Entry<String, Value>> symbolTableView;
     @FXML
-    private TableColumn<Pair<String, Value>, String> variableNameColumn;
-
+    private TableColumn<Map.Entry<String, Value>, String> variableNameColumn;
     @FXML
-    private TableColumn<Pair<String, Value>, String> variableValueColumn;
-
+    private TableColumn<Map.Entry<String, Value>, String> variableValueColumn;
     @FXML
     private ListView<String> executionStackListView;
-
     @FXML
     private Button runOneStepButton;
-
     @FXML
-    private TextArea outputTextArea;
+    private TableView<Map.Entry<Integer, Integer>> latchTableView;
+    @FXML
+    private TableColumn<Map.Entry<Integer, Integer>, Integer> latchLocationColumn;
+    @FXML
+    private TableColumn<Map.Entry<Integer, Integer>, Integer> latchValueColumn;
 
 
     public void setController(Controller controller) {
         this.controller = controller;
         populate();
-        refreshAllViews();
     }
 
     @FXML
     public void initialize() {
-        programStateIdentifiersListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        addressColumn.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().first).asObject());
-        valueColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().second.toString()));
-        variableNameColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().first));
-        variableValueColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().second.toString()));
+        addressColumn.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().getKey()).asObject());
+        valueColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getValue().toString()));
+        variableNameColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getKey()));
+        variableValueColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().getValue().toString()));
+        latchLocationColumn.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().getKey()).asObject());
+        latchValueColumn.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().getValue()).asObject());
     }
 
     private ProgramState getCurrentProgramState() {
-        List<ProgramState> states = controller.getProgramStates();
-        if (states == null || states.isEmpty())
+        if (controller.getProgramStates().isEmpty())
             return null;
-        else {
-            int currentId = programStateIdentifiersListView.getSelectionModel().getSelectedIndex();
-            if (currentId == -1)
-                return states.get(0);
-            else
-                return states.get(currentId);
-        }
+        int currentId = programStateIdentifiersListView.getSelectionModel().getSelectedIndex();
+        if (currentId == -1)
+            return controller.getProgramStates().get(0);
+        return controller.getProgramStates().get(currentId);
     }
 
     private void populate() {
-        populateHeapTableView();
-        populateOutputListView();
-        populateFileTableListView();
-        populateProgramStateIdentifiersListView();
-        populateSymbolTableView();
-        populateExecutionStackListView();
+        populateHeap();
+        populateOutput();
+        populateFileTable();
+        populateProgramStateIdentifiers();
+        populateSymbolTable(getCurrentProgramState());
+        populateExecutionStack(getCurrentProgramState());
+        populateLatchTable();
     }
 
     @FXML
     private void changeProgramState(MouseEvent event) {
-        populateExecutionStackListView();
-        populateSymbolTableView();
+        populateExecutionStack(getCurrentProgramState());
+        populateSymbolTable(getCurrentProgramState());
     }
 
-    private void populateNumberOfProgramStatesTextField() {
+    private void populateNumberOfProgramStates() {
         List<ProgramState> programStates = controller.getProgramStates();
-        numberOfProgramStatesTextField.setText(String.valueOf(programStates == null ? 0 : programStates.size()));
+        numberOfProgramStatesTextField.setText(String.valueOf(programStates.size()));
     }
 
-    private void populateHeapTableView() {
-        ProgramState programState = getCurrentProgramState();
-        if (programState == null) {
-            heapTableView.setItems(FXCollections.observableArrayList(new ArrayList<>()));
-            return;
+    private void populateHeap() {
+        if (!controller.getProgramStates().isEmpty()) {
+            Map<Integer, Value> heap = controller.getProgramStates().get(0).getHeap().getContent();
+            heapTableView.setItems(FXCollections.observableList(new ArrayList<>(heap.entrySet())));
+        } else {
+            heapTableView.getItems().clear();
         }
-        IHeap<Value> heap = Objects.requireNonNull(programState).getHeap();
-        ArrayList<Pair<Integer, Value>> heapEntries = new ArrayList<>();
-        if (heap != null && heap.getContent() != null) {
-            for (Map.Entry<Integer, Value> entry : heap.getContent().entrySet()) {
-                heapEntries.add(new Pair<>(entry.getKey(), entry.getValue()));
-            }
-        }
-        heapTableView.setItems(FXCollections.observableArrayList(heapEntries));
     }
 
-    private void populateOutputListView() {
-        ProgramState programState = getCurrentProgramState();
-        List<String> output = new ArrayList<>();
-        if (programState != null && programState.getOut() != null) {
-            List<Value> outputList = programState.getOut().getAll();
-            for (int index = 0; index < outputList.size(); index++) {
-                output.add(outputList.get(index).toString());
-            }
+    private void populateOutput() {
+        if (!controller.getProgramStates().isEmpty()) {
+            List<String> output = controller.getProgramStates().get(0).getOut().getAll().stream().map(Object::toString).collect(Collectors.toList());
+            outputListView.setItems(FXCollections.observableList(output));
+        } else {
+            outputListView.getItems().clear();
         }
-        outputListView.setItems(FXCollections.observableArrayList(output));
     }
 
-    private void populateFileTableListView() {
-        ProgramState programState = getCurrentProgramState();
-        List<String> files = new ArrayList<>();
-        if (programState != null) {
-            FileTable ft = programState.getFileTable();
-            if (ft != null) {
-                try {
-                    java.lang.reflect.Method m = ft.getClass().getMethod("getContent");
-                    Object content = m.invoke(ft);
-                    if (content instanceof Map) {
-                        for (Object key : ((Map) content).keySet()) files.add(String.valueOf(key));
-                    }
-                } catch (Exception ignored) {
-                    try {
-                        java.lang.reflect.Method m2 = ft.getClass().getMethod("getOpenFiles");
-                        Object content = m2.invoke(ft);
-                        if (content instanceof Map) {
-                            for (Object key : ((Map) content).keySet()) files.add(String.valueOf(key));
-                        }
-                    } catch (Exception ignored2) {
-                    }
-                }
-            }
+    private void populateFileTable() {
+        if (!controller.getProgramStates().isEmpty()) {
+            List<String> files = new ArrayList<>(controller.getProgramStates().get(0).getFileTable().getContent().keySet());
+            fileTableListView.setItems(FXCollections.observableArrayList(files));
+        } else {
+            fileTableListView.getItems().clear();
         }
-        fileTableListView.setItems(FXCollections.observableList(files));
     }
 
-    private void populateProgramStateIdentifiersListView() {
+    private void populateProgramStateIdentifiers() {
         List<ProgramState> programStates = controller.getProgramStates();
-        List<Integer> idList = new ArrayList<>();
-        if (programStates != null) {
-            idList = programStates.stream().map(ProgramState::getId).collect(Collectors.toList());
-        }
+        List<Integer> idList = programStates.stream().map(ProgramState::getId).collect(Collectors.toList());
         programStateIdentifiersListView.setItems(FXCollections.observableList(idList));
-        populateNumberOfProgramStatesTextField();
+        populateNumberOfProgramStates();
     }
 
-    private void populateSymbolTableView() {
-        ProgramState programState = getCurrentProgramState();
-        ArrayList<Pair<String, Value>> symbolTableEntries = new ArrayList<>();
-        if (programState != null && programState.getSymTable() != null) {
-            IMap<String, Value> symbolTable = Objects.requireNonNull(programState).getSymTable();
-            Map<String, Value> content = symbolTable.getContent();
-            if (content != null) {
-                for (Map.Entry<String, Value> entry : content.entrySet()) {
-                    symbolTableEntries.add(new Pair<>(entry.getKey(), entry.getValue()));
-                }
-            }
+    private void populateSymbolTable(ProgramState givenProgramState) {
+        if (givenProgramState != null) {
+            Map<String, Value> symTable = givenProgramState.getSymTable().getContent();
+            symbolTableView.setItems(FXCollections.observableList(new ArrayList<>(symTable.entrySet())));
+        } else {
+            symbolTableView.getItems().clear();
         }
-        symbolTableView.setItems(FXCollections.observableArrayList(symbolTableEntries));
     }
 
-    private void populateExecutionStackListView() {
-        ProgramState programState = getCurrentProgramState();
-        List<String> executionStackToString = new ArrayList<>();
-        if (programState != null && programState.getExeStack() != null) {
-            Object stack = programState.getExeStack();
-            boolean filled = false;
-            try {
-                java.lang.reflect.Method m = stack.getClass().getMethod("getAll");
-                Object res = m.invoke(stack);
-                if (res instanceof Iterable) {
-                    for (Object statement : (Iterable) res) executionStackToString.add(statement.toString());
-                    filled = true;
-                }
-            } catch (Exception ignored) {
+    private void populateExecutionStack(ProgramState givenProgramState) {
+        if (givenProgramState != null) {
+            IStack exeStack = givenProgramState.getExeStack();
+            List<String> exeStackList = new ArrayList<>();
+            for (Statement st : exeStack.getStatements()) {
+                exeStackList.add(st.toString());
             }
-            if (!filled) {
-                try {
-                    java.lang.reflect.Method m2 = stack.getClass().getMethod("get");
-                    Object res2 = m2.invoke(stack);
-                    if (res2 instanceof Iterable) {
-                        for (Object statement : (Iterable) res2) executionStackToString.add(statement.toString());
-                        filled = true;
-                    }
-                } catch (Exception ignored) {
-                }
-            }
-            if (!filled) {
-                executionStackToString.add(stack.toString());
-            }
+            executionStackListView.setItems(FXCollections.observableList(exeStackList));
+        } else {
+            executionStackListView.getItems().clear();
         }
-        executionStackListView.setItems(FXCollections.observableList(executionStackToString));
+    }
+
+    private void populateLatchTable() {
+        if (!controller.getProgramStates().isEmpty()) {
+            Map<Integer, Integer> latchTableContent = controller.getProgramStates().get(0).getLatchTable().getContent();
+            latchTableView.setItems(FXCollections.observableList(new ArrayList<>(latchTableContent.entrySet())));
+        } else {
+            latchTableView.getItems().clear();
+        }
     }
 
     @FXML
-    private void runOneStep(MouseEvent mouseEvent) {
+    void runOneStep(MouseEvent event) {
         if (controller != null) {
             try {
-                List<ProgramState> programStates = Objects.requireNonNull(controller.getProgramStates());
-                if (!programStates.isEmpty()) {
+                List<ProgramState> programStates = controller.getProgramStates();
+                if (programStates.size() > 0) {
                     controller.oneStepForAllPrg(programStates);
                     populate();
-                    programStates = controller.getProgramStates();
-                    populateProgramStateIdentifiersListView();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error!");
-                    alert.setHeaderText("An error has occured!");
-                    alert.setContentText("There is nothing left to execute!");
-                    alert.showAndWait();
                 }
-            } catch (MyException | InterruptedException e) {
+            } catch (InterruptedException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Execution error!");
-                alert.setHeaderText("An execution error has occured!");
+                alert.setTitle("Error");
+                alert.setHeaderText("An error has occurred!");
                 alert.setContentText(e.getMessage());
                 alert.showAndWait();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error!");
-            alert.setHeaderText("An error has occured!");
-            alert.setContentText("No program selected!");
+            alert.setTitle("Error");
+            alert.setHeaderText("An error has occurred!");
+            alert.setContentText("Controller is not initialized!");
             alert.showAndWait();
         }
-    }
-
-    public void refreshAllViews() {
-        if (controller == null) return;
-        List<ProgramState> states = controller.getProgramStates();
-        if (states == null || states.isEmpty()) {
-            updateOutput("");
-            return;
-        }
-
-        StringBuilder sb = new StringBuilder();
-        for (ProgramState ps : states) {
-            if (ps == null || ps.getOut() == null) continue;
-            sb.append(ps.getOut().toString()).append(System.lineSeparator());
-        }
-        updateOutput(sb.toString().trim());
-    }
-
-    private void updateOutput(String text) {
-        Platform.runLater(() -> {
-            if (outputTextArea != null) outputTextArea.setText(text);
-        });
     }
 }

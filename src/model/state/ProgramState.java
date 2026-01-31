@@ -2,45 +2,59 @@ package model.state;
 
 import exceptions.MyException;
 import model.adt.dictfile.FileTable;
-import model.adt.stack.IStack;
-import model.adt.map.IMap;
+import model.adt.heap.IHeap;
+import model.adt.latch.ILatch;
 import model.adt.list.IList;
+import model.adt.map.IMap;
+import model.adt.stack.IStack;
 import model.statement.Statement;
 import model.value.Value;
-import model.adt.heap.IHeap;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ProgramState {
-    private IStack exeStack;
-    private IMap symTable;
-    private IList<Value> out;
-    private FileTable fileTable;
-    private Statement originalProgram;
-    private IHeap heap;
+    private final IStack exeStack;
+    private final IMap<String, Value> symTable;
+    private final IList<Value> out;
+    private final FileTable fileTable;
+    private final IHeap<Value> heap;
+    private final ILatch latchTable;
+    private final Statement originalProgram;
     private final int id;
-    private static int lastId = 0;
+    private static final AtomicInteger nextId = new AtomicInteger(0);
 
-    public ProgramState(IStack stk, IMap symtbl, IList<Value> ot, FileTable fileTable, Statement prg, IHeap heap, int ignoredId) {
-        this.exeStack = stk;
-        this.symTable = symtbl;
-        this.out = ot;
+    public ProgramState(IStack stack, IMap<String, Value> symTable, IList<Value> out,
+                        FileTable fileTable, Statement prg, IHeap<Value> heap, ILatch latchTable) {
+        this.exeStack = stack;
+        this.symTable = symTable;
+        this.out = out;
         this.fileTable = fileTable;
-        this.originalProgram = prg;
-        if (this.originalProgram != null) {
-            this.exeStack.push(this.originalProgram);
-        }
         this.heap = heap;
-        this.id = nextId(); //static synchronized method and the increments happen under a class lock (we avoid having duplicate ids when multiple threads create ProgramState instances)
+        this.latchTable = latchTable;
+        this.originalProgram = prg;
+        this.exeStack.push(prg);
+        this.id = nextId.getAndIncrement();
     }
 
-    public ProgramState(IStack stk, IMap symtbl, IList<Value> ot, FileTable fileTable, IHeap heap, int ignoredId) {
-        this(stk, symtbl, ot, fileTable, null, heap, ignoredId);
+    public ProgramState(IStack stack, IMap<String, Value> symTable, IList<Value> out,
+                        FileTable fileTable, Statement prg, IHeap<Value> heap, ILatch latchTable, int id) {
+        this.exeStack = stack;
+        this.symTable = symTable;
+        this.out = out;
+        this.fileTable = fileTable;
+        this.heap = heap;
+        this.latchTable = latchTable;
+        this.originalProgram = prg;
+        this.exeStack.push(prg);
+        this.id = id;
     }
+
 
     public IStack getExeStack() {
         return exeStack;
     }
 
-    public IMap getSymTable() {
+    public IMap<String, Value> getSymTable() {
         return symTable;
     }
 
@@ -48,81 +62,42 @@ public class ProgramState {
         return out;
     }
 
-    public IList<Value> out() {
-        return out;
-    }
-
-    public Statement getOriginalProgram() {
-        return originalProgram;
-    }
-
-    public void setOriginalProgram(Statement originalProgram) {
-        this.originalProgram = originalProgram;
-    }
-
-    public void setExeStack(IStack exeStack) {
-        this.exeStack = exeStack;
-    }
-
-    public void setSymTable(IMap symTable) {
-        this.symTable = symTable;
-    }
-
-    public void setOut(IList<Value> out) {
-        this.out = out;
-    }
-
     public FileTable getFileTable() {
         return fileTable;
     }
 
-    public void setFileTable(FileTable fileTable) {
-        this.fileTable = fileTable;
-    }
-
-    public IHeap getHeap() {
+    public IHeap<Value> getHeap() {
         return heap;
     }
 
-    public void setHeap(IHeap heap) {
-        this.heap = heap;
+    public ILatch getLatchTable() {
+        return latchTable;
     }
 
     public int getId() {
         return id;
     }
 
-    private static synchronized int nextId() {
-        return ++lastId;
-    }
-
-    //
     public boolean isNotCompleted() {
         return !exeStack.isEmpty();
     }
 
-    //
     public ProgramState oneStep() throws MyException {
         if (exeStack.isEmpty()) {
             throw new MyException("prgstate stack is empty");
         }
-        Statement crtStmt = exeStack.pop();
-        return crtStmt.execute(this);
+        Statement currentStatement = exeStack.pop();
+        return currentStatement.execute(this);
     }
-    /*
-    * - if the execution stack is empty, throw an exception.
-    * - otherwise, pop the top statement from the stack and execute it.
-     */
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("ProgramState[id=").append(id).append("]\n");
-        sb.append("  exeStack=").append(exeStack).append(",\n");
-        sb.append("  symTable=").append(symTable).append(",\n");
-        sb.append("  out=").append(out).append(",\n");
-        sb.append("  fileTable=").append(String.valueOf(fileTable)).append(",\n");
-        sb.append("  heap=").append(heap).append("\n");
-        return sb.toString();
+        return "ID: " + id + "\n" +
+                "ExeStack: " + exeStack.toString() + "\n" +
+                "SymTable: " + symTable.toString() + "\n" +
+                "Out: " + out.toString() + "\n" +
+                "FileTable: " + fileTable.toString() + "\n" +
+                "Heap: " + heap.toString() + "\n" +
+                "LatchTable: " + latchTable.toString() + "\n";
     }
 }
