@@ -5,6 +5,8 @@ import model.adt.heap.IHeap;
 import model.adt.heap.MyHeap;
 import model.adt.list.ListOut;
 import model.adt.list.IList;
+import model.adt.lock.ILockTable;
+import model.adt.lock.MyLockTable;
 import model.adt.map.MapSymbolTable;
 import model.adt.map.IMap;
 import model.adt.stack.IStack;
@@ -43,6 +45,8 @@ import model.expression.rhExpression;
 import model.statement.WhileStatement;
 import model.statement.whStatement;
 import model.statement.ForkStatement;
+import model.adt.lock.ILockTable;
+import model.adt.lock.MyLockTable;
 
 public class Interpreter {
     public static void main(String[] args) {
@@ -357,8 +361,10 @@ public class Interpreter {
         IList out = new ListOut();
         FileTable fileTable = new MapFileTable();
         IHeap heap = new MyHeap();
+        ILockTable lockTable = new MyLockTable();
+
         stack.push(program);
-        return new ProgramState(stack, symTable, out, fileTable, heap, 0);
+        return new ProgramState(stack, symTable, out, fileTable, heap, lockTable);
     }
 
 

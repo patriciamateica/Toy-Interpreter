@@ -30,6 +30,8 @@ import model.value.StringValue;
 import repository.IRepository;
 import repository.SingleProgramRepository;
 import model.value.Value;
+import model.adt.lock.ILockTable;
+import model.adt.lock.MyLockTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +75,9 @@ public class ProgramChooserController {
             FileTable fileTable = new MapFileTable();
             IHeap<Value> heap = new MyHeap<>();
 
-            ProgramState programState = new ProgramState(stack, symTable, out, fileTable, selected, heap, 0);
+            ILockTable lockTable = new MyLockTable();
+
+            ProgramState programState = new ProgramState(stack, symTable, out, fileTable, selected, heap, lockTable, 0);
 
             IRepository repo = new SingleProgramRepository();
             List<ProgramState> list = new ArrayList<>();
@@ -341,6 +345,103 @@ public class ProgramChooserController {
                 )
         );
         all.add(ex11);
+
+// Example: Lock mechanism test
+        Statement lockExample = new CompoundStatement(
+                new VariableDeclarationStatement(new RefType(new Integer()), "v1"),
+                new CompoundStatement(
+                        new VariableDeclarationStatement(new RefType(new Integer()), "v2"),
+                        new CompoundStatement(
+                                new VariableDeclarationStatement(new Integer(), "x"),
+                                new CompoundStatement(
+                                        new VariableDeclarationStatement(new Integer(), "q"),
+                                        new CompoundStatement(
+                                                new newStatement("v1", new ValueExpression(new IntegerValue(20))),
+                                                new CompoundStatement(
+                                                        new newStatement("v2", new ValueExpression(new IntegerValue(30))),
+                                                        new CompoundStatement(
+                                                                new NewLockStatement("x"),
+                                                                new CompoundStatement(
+                                                                        new ForkStatement(
+                                                                                new CompoundStatement(
+                                                                                        new ForkStatement(
+                                                                                                new CompoundStatement(
+                                                                                                        new LockStatement("x"),
+                                                                                                        new CompoundStatement(
+                                                                                                                new whStatement("v1", new ArithmeticExpression(2, new rhExpression(new VariableExpression("v1")), new ValueExpression(new IntegerValue(1)))),
+                                                                                                                new UnlockStatement("x")
+                                                                                                        ))
+                                                                                        ),
+                                                                                        new CompoundStatement(
+                                                                                                new LockStatement("x"),
+                                                                                                new CompoundStatement(
+                                                                                                        new whStatement("v1", new ArithmeticExpression(3, new rhExpression(new VariableExpression("v1")), new ValueExpression(new IntegerValue(10)))),
+                                                                                                        new UnlockStatement("x")
+                                                                                                )
+                                                                                        )
+                                                                                )
+                                                                        ),
+                                                                        new CompoundStatement(
+                                                                                new NewLockStatement("q"),
+                                                                                new CompoundStatement(
+                                                                                        new ForkStatement(
+                                                                                                new CompoundStatement(
+                                                                                                        new ForkStatement(
+                                                                                                                new CompoundStatement(
+                                                                                                                        new LockStatement("q"),
+                                                                                                                        new CompoundStatement(
+                                                                                                                                new whStatement("v2", new ArithmeticExpression(1, new rhExpression(new VariableExpression("v2")), new ValueExpression(new IntegerValue(5)))),
+                                                                                                                                new UnlockStatement("q")
+                                                                                                                        )
+                                                                                                                )
+                                                                                                        ),
+                                                                                                        new CompoundStatement(
+                                                                                                                new LockStatement("q"),
+                                                                                                                new CompoundStatement(
+                                                                                                                        new whStatement("v2", new ArithmeticExpression(3, new rhExpression(new VariableExpression("v2")), new ValueExpression(new IntegerValue(10)))),
+                                                                                                                        new UnlockStatement("q")
+                                                                                                                )
+                                                                                                        )
+                                                                                                )
+                                                                                        ),
+                                                                                        new CompoundStatement(
+                                                                                                new NopStatement(),
+                                                                                                new CompoundStatement(
+                                                                                                        new NopStatement(),
+                                                                                                        new CompoundStatement(
+                                                                                                                new NopStatement(),
+                                                                                                                new CompoundStatement(
+                                                                                                                        new NopStatement(),
+                                                                                                                        new CompoundStatement(
+                                                                                                                                new LockStatement("x"),
+                                                                                                                                new CompoundStatement(
+                                                                                                                                        new PrintStatement(new rhExpression(new VariableExpression("v1"))),
+                                                                                                                                        new CompoundStatement(
+                                                                                                                                                new UnlockStatement("x"),
+                                                                                                                                                new CompoundStatement(
+                                                                                                                                                        new LockStatement("q"),
+                                                                                                                                                        new CompoundStatement(
+                                                                                                                                                                new PrintStatement(new rhExpression(new VariableExpression("v2"))),
+                                                                                                                                                                new UnlockStatement("q")
+                                                                                                                                                        )
+                                                                                                                                                )
+                                                                                                                                        )
+                                                                                                                                )
+                                                                                                                        )
+                                                                                                                )
+                                                                                                        )
+                                                                                                )
+                                                                                        )
+                                                                                )
+                                                                        ))
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+        all.add(lockExample);
 
         return FXCollections.observableArrayList(all);
     }

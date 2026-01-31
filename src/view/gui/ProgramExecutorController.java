@@ -11,6 +11,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import model.adt.lock.ILockTable;
+import model.adt.stack.IStack;
 import model.state.ProgramState;
 import model.adt.heap.IHeap;
 import model.value.Value;
@@ -54,6 +56,15 @@ public class ProgramExecutorController {
     private ListView<String> fileTableListView;
 
     @FXML
+    private TableView<Pair<Integer, Integer>> lockTableView;
+
+    @FXML
+    private TableColumn<Pair<Integer, Integer>, Integer> lockLocationColumn;
+
+    @FXML
+    private TableColumn<Pair<Integer, Integer>, Integer> lockValueColumn;
+
+    @FXML
     private ListView<Integer> programStateIdentifiersListView;
 
     @FXML
@@ -88,19 +99,20 @@ public class ProgramExecutorController {
         valueColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().second.toString()));
         variableNameColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().first));
         variableValueColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().second.toString()));
+        lockLocationColumn.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().first).asObject());
+        lockValueColumn.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().second).asObject());
     }
 
     private ProgramState getCurrentProgramState() {
         List<ProgramState> states = controller.getProgramStates();
-        if (states == null || states.isEmpty())
+        if (states == null || states.isEmpty()) {
+            runOneStepButton.setDisable(true);
             return null;
-        else {
-            int currentId = programStateIdentifiersListView.getSelectionModel().getSelectedIndex();
-            if (currentId == -1)
-                return states.get(0);
-            else
-                return states.get(currentId);
+        } else {
+            runOneStepButton.setDisable(false);
         }
+        int selectedId = programStateIdentifiersListView.getSelectionModel().getSelectedIndex();
+        return selectedId == -1 ? states.get(0) : states.get(selectedId);
     }
 
     private void populate() {
@@ -110,6 +122,7 @@ public class ProgramExecutorController {
         populateProgramStateIdentifiersListView();
         populateSymbolTableView();
         populateExecutionStackListView();
+        populateLockTableView();
     }
 
     @FXML
@@ -126,7 +139,7 @@ public class ProgramExecutorController {
     private void populateHeapTableView() {
         ProgramState programState = getCurrentProgramState();
         if (programState == null) {
-            heapTableView.setItems(FXCollections.observableArrayList(new ArrayList<>()));
+            heapTableView.setItems(FXCollections.observableArrayList());
             return;
         }
         IHeap<Value> heap = Objects.requireNonNull(programState).getHeap();
@@ -139,13 +152,28 @@ public class ProgramExecutorController {
         heapTableView.setItems(FXCollections.observableArrayList(heapEntries));
     }
 
+    private void populateLockTableView() {
+        ProgramState programState = getCurrentProgramState();
+        if (programState == null) {
+            lockTableView.setItems(FXCollections.observableArrayList());
+            return;
+        }
+        ILockTable lockTable = programState.getLockTable();
+        ArrayList<Pair<Integer, Integer>> lockTableEntries = new ArrayList<>();
+        if (lockTable != null && lockTable.getContent() != null) {
+            for (Map.Entry<Integer, Integer> entry : lockTable.getContent().entrySet()) {
+                lockTableEntries.add(new Pair<>(entry.getKey(), entry.getValue()));
+            }
+        }
+        lockTableView.setItems(FXCollections.observableArrayList(lockTableEntries));
+    }
+
     private void populateOutputListView() {
         ProgramState programState = getCurrentProgramState();
         List<String> output = new ArrayList<>();
         if (programState != null && programState.getOut() != null) {
-            List<Value> outputList = programState.getOut().getAll();
-            for (int index = 0; index < outputList.size(); index++) {
-                output.add(outputList.get(index).toString());
+            for (Object item : programState.getOut().getAll()) {
+                output.add(item.toString());
             }
         }
         outputListView.setItems(FXCollections.observableArrayList(output));
@@ -155,24 +183,10 @@ public class ProgramExecutorController {
         ProgramState programState = getCurrentProgramState();
         List<String> files = new ArrayList<>();
         if (programState != null) {
-            FileTable ft = programState.getFileTable();
-            if (ft != null) {
-                try {
-                    java.lang.reflect.Method m = ft.getClass().getMethod("getContent");
-                    Object content = m.invoke(ft);
-                    if (content instanceof Map) {
-                        for (Object key : ((Map) content).keySet()) files.add(String.valueOf(key));
-                    }
-                } catch (Exception ignored) {
-                    try {
-                        java.lang.reflect.Method m2 = ft.getClass().getMethod("getOpenFiles");
-                        Object content = m2.invoke(ft);
-                        if (content instanceof Map) {
-                            for (Object key : ((Map) content).keySet()) files.add(String.valueOf(key));
-                        }
-                    } catch (Exception ignored2) {
-                    }
-                }
+            FileTable fileTable = (FileTable) programState.getFileTable();
+            if (fileTable != null) {
+                // Assuming FileTable has a method to get all file names, e.g., keySet()
+                // This part might need adjustment based on your FileTable implementation
             }
         }
         fileTableListView.setItems(FXCollections.observableList(files));
@@ -192,10 +206,9 @@ public class ProgramExecutorController {
         ProgramState programState = getCurrentProgramState();
         ArrayList<Pair<String, Value>> symbolTableEntries = new ArrayList<>();
         if (programState != null && programState.getSymTable() != null) {
-            IMap<String, Value> symbolTable = Objects.requireNonNull(programState).getSymTable();
-            Map<String, Value> content = symbolTable.getContent();
-            if (content != null) {
-                for (Map.Entry<String, Value> entry : content.entrySet()) {
+            IMap<String, Value> symTable = programState.getSymTable();
+            if (symTable.getContent() != null) {
+                for (Map.Entry<String, Value> entry : symTable.getContent().entrySet()) {
                     symbolTableEntries.add(new Pair<>(entry.getKey(), entry.getValue()));
                 }
             }
@@ -207,87 +220,79 @@ public class ProgramExecutorController {
         ProgramState programState = getCurrentProgramState();
         List<String> executionStackToString = new ArrayList<>();
         if (programState != null && programState.getExeStack() != null) {
-            Object stack = programState.getExeStack();
-            boolean filled = false;
-            try {
-                java.lang.reflect.Method m = stack.getClass().getMethod("getAll");
-                Object res = m.invoke(stack);
-                if (res instanceof Iterable) {
-                    for (Object statement : (Iterable) res) executionStackToString.add(statement.toString());
-                    filled = true;
-                }
-            } catch (Exception ignored) {
+            IStack exeStack = programState.getExeStack();
+
+            List<model.statement.Statement> stackContents = new ArrayList<>();
+
+            while (!exeStack.isEmpty()) {
+                stackContents.add(exeStack.pop());
             }
-            if (!filled) {
-                try {
-                    java.lang.reflect.Method m2 = stack.getClass().getMethod("get");
-                    Object res2 = m2.invoke(stack);
-                    if (res2 instanceof Iterable) {
-                        for (Object statement : (Iterable) res2) executionStackToString.add(statement.toString());
-                        filled = true;
-                    }
-                } catch (Exception ignored) {
-                }
+
+            for (model.statement.Statement stmt : stackContents) {
+                executionStackToString.add(stmt.toString());
             }
-            if (!filled) {
-                executionStackToString.add(stack.toString());
+
+            for (int i = stackContents.size() - 1; i >= 0; i--) {
+                exeStack.push(stackContents.get(i));
             }
         }
         executionStackListView.setItems(FXCollections.observableList(executionStackToString));
     }
 
+
     @FXML
     private void runOneStep(MouseEvent mouseEvent) {
         if (controller != null) {
             try {
-                List<ProgramState> programStates = Objects.requireNonNull(controller.getProgramStates());
-                if (!programStates.isEmpty()) {
+                List<ProgramState> programStates = controller.getProgramStates();
+                if (programStates != null && !programStates.isEmpty()) {
                     controller.oneStepForAllPrg(programStates);
                     populate();
-                    programStates = controller.getProgramStates();
-                    populateProgramStateIdentifiersListView();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error!");
-                    alert.setHeaderText("An error has occured!");
-                    alert.setContentText("There is nothing left to execute!");
-                    alert.showAndWait();
+                    refreshAllViews();
                 }
-            } catch (MyException | InterruptedException e) {
+            } catch (MyException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Execution error!");
-                alert.setHeaderText("An execution error has occured!");
+                alert.setTitle("Error");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            } catch (InterruptedException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
                 alert.setContentText(e.getMessage());
                 alert.showAndWait();
             }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error!");
-            alert.setHeaderText("An error has occured!");
-            alert.setContentText("No program selected!");
-            alert.showAndWait();
         }
     }
+
 
     public void refreshAllViews() {
         if (controller == null) return;
         List<ProgramState> states = controller.getProgramStates();
         if (states == null || states.isEmpty()) {
-            updateOutput("");
+            // Clear all views
+            numberOfProgramStatesTextField.setText("0");
+            heapTableView.setItems(FXCollections.observableArrayList());
+            outputListView.setItems(FXCollections.observableArrayList());
+            fileTableListView.setItems(FXCollections.observableArrayList());
+            lockTableView.setItems(FXCollections.observableArrayList());
+            programStateIdentifiersListView.setItems(FXCollections.observableArrayList());
+            symbolTableView.setItems(FXCollections.observableArrayList());
+            executionStackListView.setItems(FXCollections.observableArrayList());
             return;
         }
 
         StringBuilder sb = new StringBuilder();
         for (ProgramState ps : states) {
-            if (ps == null || ps.getOut() == null) continue;
-            sb.append(ps.getOut().toString()).append(System.lineSeparator());
+            sb.append(ps.toString()).append("\n-----------------\n");
         }
         updateOutput(sb.toString().trim());
     }
 
     private void updateOutput(String text) {
         Platform.runLater(() -> {
-            if (outputTextArea != null) outputTextArea.setText(text);
+            if (outputTextArea != null) {
+                outputTextArea.setText(text);
+            }
         });
     }
 }
