@@ -8,8 +8,11 @@ import model.adt.map.IMap;
 import model.adt.list.IList;
 import model.adt.dictfile.FileTable;
 import model.adt.heap.IHeap;
+import model.adt.procedures.IProcTable;
 import model.value.Value;
 import model.type.Type;
+
+import java.util.Stack;
 
 public class ForkStatement implements Statement {
     private final Statement statement;
@@ -20,22 +23,21 @@ public class ForkStatement implements Statement {
 
     @Override
     public ProgramState execute(ProgramState state) throws MyException {
-        IMap<String, Value> symTable = state.getSymTable();
+        Stack<IMap<String, Value>> symTableStack = state.getSymTableStack();
         IList<Value> out = state.getOut();
         FileTable fileTable = state.getFileTable();
         IHeap heap = state.getHeap();
+        IProcTable procTable = state.getProcTable();
 
-        IMap<String, Value> clonedSymTable = symTable.deepCopy();
+        Stack<IMap<String, Value>> clonedSymTableStack = new Stack<>();
+        for (IMap<String, Value> symTable : symTableStack) {
+            clonedSymTableStack.push(symTable.deepCopy());
+        }
 
         IStack childStack = new ExecutionStack();
 
-        return new ProgramState(childStack, clonedSymTable, out, fileTable, statement, heap, 0);
+        return new ProgramState(childStack, clonedSymTableStack, out, fileTable, statement, heap, procTable, 0);
     }
-    /*
-    * - this method is responsible for creating a new ProgramState that represents a child thread of execution
-    * - the current program's state is duplicated and a new execution stack is created for the child
-    * - the symbol table is deep-copied to ensure that the child thread has its own copy of variables and doesn't play with the ones the parent has
-     */
 
     @Override
     public IMap<String, Type> typecheck(IMap<String, Type> typeEnv) throws MyException {

@@ -353,13 +353,15 @@ public class Interpreter {
         }
 
         IStack stack = new ExecutionStack();
-        IMap symTable = new MapSymbolTable();
-        IList out = new ListOut();
+        IMap<String, model.value.Value> symTable = new MapSymbolTable<>();
+        IList<model.value.Value> out = new ListOut<>();
         FileTable fileTable = new MapFileTable();
-        IHeap heap = new MyHeap();
-        stack.push(program);
-        return new ProgramState(stack, symTable, out, fileTable, heap, 0);
+        IHeap<model.value.Value> heap = new MyHeap<>();
+        model.adt.procedures.IProcTable procTable = new model.adt.procedures.MyProcTable();
+
+        return new ProgramState(stack, symTable, out, fileTable, program, heap, procTable, 0);
     }
+
 
 
 }

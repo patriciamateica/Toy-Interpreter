@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
-           prefWidth="850.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+           prefWidth="1050.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="view.gui.ProgramExecutorController">
     <VBox alignment="TOP_CENTER" prefHeight="513.0" prefWidth="850.0">
         <BorderPane prefHeight="92.0" prefWidth="850.0"/>
@@ -34,109 +34,86 @@
             </TextField>
         </HBox>
         <HBox alignment="TOP_CENTER">
-            <VBox.margin>
-                <Insets left="5.0" right="5.0"/>
-            </VBox.margin>
             <VBox alignment="TOP_CENTER">
-                <Label text="HeapTable" textFill="#03818f">
+                <Label text="Heap" textFill="#03818f">
                     <font>
-                        <Font name="0xProto Nerd Font" size="12.0"/>
+                        <Font name="0xProto Nerd Font Mono" size="14.0"/>
                     </font>
                 </Label>
-                <TableView fx:id="heapTableView" prefHeight="200.0" prefWidth="200.0"
-                           style="-fx-font-family: &quot;0xProto Nerd Font Mono&quot;;">
+                <TableView fx:id="heapTableView" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                        <TableColumn fx:id="addressColumn" editable="false" prefWidth="101.20001375675201"
-                                     style="-fx-text-fill: #03818f;" text="Address"/>
-                        <TableColumn fx:id="valueColumn" editable="false" prefWidth="97.99999237060547"
-                                     text="Value"/>
+                        <TableColumn fx:id="addressColumn" prefWidth="75.0" text="Address"/>
+                        <TableColumn fx:id="valueColumn" prefWidth="125.0" text="Value"/>
                     </columns>
                 </TableView>
             </VBox>
             <VBox alignment="TOP_CENTER">
-                <HBox.margin>
-                    <Insets left="5.0" right="5.0"/>
-                </HBox.margin>
-                <Label text="Output" textFill="#03818f">
+                <Label text="ProcTable" textFill="#03818f">
                     <font>
-                        <Font name="0xProto Nerd Font Mono" size="12.0"/>
+                        <Font name="0xProto Nerd Font Mono" size="14.0"/>
                     </font>
                 </Label>
-                <ListView fx:id="outputListView" prefHeight="200.0" prefWidth="200.0"
-                          style="-fx-font-family: &quot;0xProto Nerd Font Mono&quot;;"/>
+                <TableView fx:id="procTableView" prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                        <TableColumn fx:id="procNameColumn" prefWidth="75.0" text="Name"/>
+                        <TableColumn fx:id="procDefinitionColumn" prefWidth="125.0" text="Definition"/>
+                    </columns>
+                </TableView>
+            </VBox>
+            <VBox alignment="TOP_CENTER">
+                <Label text="Output" textFill="#03818f">
+                    <font>
+                        <Font name="0xProto Nerd Font Mono" size="14.0"/>
+                    </font>
+                </Label>
+                <ListView fx:id="outputListView" prefHeight="200.0" prefWidth="200.0"/>
             </VBox>
             <VBox alignment="TOP_CENTER">
                 <Label text="FileTable" textFill="#03818f">
                     <font>
-                        <Font name="0xProto Nerd Font" size="12.0"/>
+                        <Font name="0xProto Nerd Font Mono" size="14.0"/>
                     </font>
                 </Label>
-                <ListView fx:id="fileTableListView" prefHeight="200.0" prefWidth="200.0"
-                          style="-fx-font-family: &quot;0xProto Nerd Font Mono&quot;;">
-                    <VBox.margin>
-                        <Insets/>
-                    </VBox.margin>
-                </ListView>
+                <ListView fx:id="fileTableListView" prefHeight="200.0" prefWidth="200.0"/>
             </VBox>
         </HBox>
         <HBox alignment="TOP_CENTER">
-            <VBox.margin>
-                <Insets left="5.0" right="5.0"/>
-            </VBox.margin>
             <VBox alignment="TOP_CENTER">
-                <HBox.margin>
-                    <Insets/>
-                </HBox.margin>
-                <Label text="ProgramState IDs" textFill="#03818f">
+                <Label text="Program States" textFill="#03818f">
                     <font>
-                        <Font name="0xProto Nerd Font" size="12.0"/>
+                        <Font name="0xProto Nerd Font Mono" size="14.0"/>
                     </font>
                 </Label>
-                <ListView fx:id="programStateIdentifiersListView" onMouseClicked="#changeProgramState"
-                          prefHeight="200.0" prefWidth="200.0"
-                          style="-fx-font-family: &quot;0xProto Nerd Font Mono&quot;;"/>
+                <ListView fx:id="programStateIdentifiersListView" onMouseClicked="#changeProgramState" prefHeight="200.0" prefWidth="200.0"/>
             </VBox>
             <VBox alignment="TOP_CENTER">
-                <HBox.margin>
-                    <Insets left="5.0" right="5.0"/>
-                </HBox.margin>
-                <Label text="SymTable" textFill="#03818f">
+                <Label text="Symbol Table" textFill="#03818f">
                     <font>
-                        <Font name="0xProto Nerd Font Mono" size="12.0"/>
+                        <Font name="0xProto Nerd Font Mono" size="14.0"/>
                     </font>
                 </Label>
-                <TableView fx:id="symbolTableView" prefHeight="200.0" prefWidth="200.0"
-                           style="-fx-font-family: &quot;0xProto Nerd Font Mono&quot;;">
+                <TableView fx:id="symbolTableView" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                        <TableColumn fx:id="variableNameColumn" editable="false" prefWidth="116.5"
-                                     text="Variable Name"/>
-                        <TableColumn fx:id="variableValueColumn" editable="false" prefWidth="83.0"
-                                     text="Value"/>
+                        <TableColumn fx:id="variableNameColumn" prefWidth="75.0" text="Variable"/>
+                        <TableColumn fx:id="variableValueColumn" prefWidth="125.0" text="Value"/>
                     </columns>
-                    <VBox.margin>
-                        <Insets/>
-                    </VBox.margin>
                 </TableView>
             </VBox>
             <VBox alignment="TOP_CENTER">
-                <HBox.margin>
-                    <Insets/>
-                </HBox.margin>
-                <Label text="ExeStack" textFill="#03818f">
+                <Label text="Execution Stack" textFill="#03818f">
                     <font>
-                        <Font name="0xProto Nerd Font Mono" size="12.0"/>
+                        <Font name="0xProto Nerd Font Mono" size="14.0"/>
                     </font>
                 </Label>
-                <ListView fx:id="executionStackListView" prefHeight="200.0" prefWidth="200.0"
-                          style="-fx-font-family: &quot;0xProto Nerd Font Mono&quot;;"/>
+                <ListView fx:id="executionStackListView" prefHeight="200.0" prefWidth="200.0"/>
             </VBox>
         </HBox>
         <BorderPane prefHeight="81.0" prefWidth="850.0"/>
         <Button fx:id="runOneStepButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
-                onMouseClicked="#runOneStep" prefHeight="40.0" prefWidth="118.0" text="Next step"
+                onMouseClicked="#runOneStep" prefHeight="24.0" prefWidth="190.0" text="Run one step"
                 textAlignment="CENTER" textFill="#028090">
             <font>
-                <Font name="0xProto Nerd Font" size="12.0"/>
+                <Font name="0xProto Nerd Font" size="11.0"/>
             </font>
         </Button>
         <BorderPane prefHeight="81.0" prefWidth="850.0"/>

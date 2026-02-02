@@ -11,6 +11,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import model.adt.procedures.IProcTable;
+import model.adt.procedures.ProcedureEntry;
 import model.state.ProgramState;
 import model.adt.heap.IHeap;
 import model.value.Value;
@@ -69,6 +71,15 @@ public class ProgramExecutorController {
     private ListView<String> executionStackListView;
 
     @FXML
+    private TableView<Pair<String, String>> procTableView;
+
+    @FXML
+    private TableColumn<Pair<String, String>, String> procNameColumn;
+
+    @FXML
+    private TableColumn<Pair<String, String>, String> procDefinitionColumn;
+
+    @FXML
     private Button runOneStepButton;
 
     @FXML
@@ -88,6 +99,8 @@ public class ProgramExecutorController {
         valueColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().second.toString()));
         variableNameColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().first));
         variableValueColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().second.toString()));
+        procNameColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().first));
+        procDefinitionColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().second));
     }
 
     private ProgramState getCurrentProgramState() {
@@ -105,6 +118,7 @@ public class ProgramExecutorController {
 
     private void populate() {
         populateHeapTableView();
+        populateProcTableView();
         populateOutputListView();
         populateFileTableListView();
         populateProgramStateIdentifiersListView();
@@ -137,6 +151,22 @@ public class ProgramExecutorController {
             }
         }
         heapTableView.setItems(FXCollections.observableArrayList(heapEntries));
+    }
+
+    private void populateProcTableView() {
+        ProgramState programState = getCurrentProgramState();
+        if (programState == null) {
+            procTableView.setItems(FXCollections.observableArrayList(new ArrayList<>()));
+            return;
+        }
+        IProcTable procTable = programState.getProcTable();
+        ArrayList<Pair<String, String>> procEntries = new ArrayList<>();
+        if (procTable != null) {
+            for (Map.Entry<String, ProcedureEntry> entry : procTable.getContent().entrySet()) {
+                procEntries.add(new Pair<>(entry.getKey(), entry.getValue().toString()));
+            }
+        }
+        procTableView.setItems(FXCollections.observableArrayList(procEntries));
     }
 
     private void populateOutputListView() {

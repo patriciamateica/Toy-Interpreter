@@ -30,8 +30,11 @@ import model.value.StringValue;
 import repository.IRepository;
 import repository.SingleProgramRepository;
 import model.value.Value;
+import model.adt.procedures.IProcTable;
+import model.adt.procedures.MyProcTable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ProgramChooserController {
@@ -72,8 +75,9 @@ public class ProgramChooserController {
             IList<Value> out = new ListOut<>();
             FileTable fileTable = new MapFileTable();
             IHeap<Value> heap = new MyHeap<>();
+            IProcTable procTable = new MyProcTable();
 
-            ProgramState programState = new ProgramState(stack, symTable, out, fileTable, selected, heap, 0);
+            ProgramState programState = new ProgramState(stack, symTable, out, fileTable, selected, heap, procTable, 0);
 
             IRepository repo = new SingleProgramRepository();
             List<ProgramState> list = new ArrayList<>();
@@ -87,12 +91,11 @@ public class ProgramChooserController {
             }
         } catch (MyException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error encountered!");
+            alert.setTitle("Type checking error!");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
     }
-
 
 
 
@@ -341,6 +344,73 @@ public class ProgramChooserController {
                 )
         );
         all.add(ex11);
+
+        Statement sumBody = new CompoundStatement(
+                new VariableDeclarationStatement(new Integer(), "v"),
+                new CompoundStatement(
+                        new AssignmentStatement(
+                                new ArithmeticExpression(1, new VariableExpression("a"), new VariableExpression("b")),
+                                "v"
+                        ),
+                        new PrintStatement(new VariableExpression("v"))
+                )
+        );
+
+        Statement productBody = new CompoundStatement(
+                new VariableDeclarationStatement(new Integer(), "v"),
+                new CompoundStatement(
+                        new AssignmentStatement(
+                                new ArithmeticExpression(3, new VariableExpression("a"), new VariableExpression("b")),
+                                "v"
+                        ),
+                        new PrintStatement(new VariableExpression("v"))
+                )
+        );
+
+        Statement ex12 = new CompoundStatement(
+                new CreateProcedureStatement("sum", Arrays.asList("a", "b"), sumBody),
+                new CompoundStatement(
+                        new CreateProcedureStatement("product", Arrays.asList("a", "b"), productBody),
+                        new CompoundStatement(
+                                new VariableDeclarationStatement(new Integer(), "v"),
+                                new CompoundStatement(
+                                        new VariableDeclarationStatement(new Integer(), "w"),
+                                        new CompoundStatement(
+                                                new AssignmentStatement(new ValueExpression(new IntegerValue(2)), "v"),
+                                                new CompoundStatement(
+                                                        new AssignmentStatement(new ValueExpression(new IntegerValue(5)), "w"),
+                                                        new CompoundStatement(
+                                                                new CallStatement("sum", Arrays.asList(
+                                                                        new ArithmeticExpression(3, new VariableExpression("v"), new ValueExpression(new IntegerValue(10))),
+                                                                        new VariableExpression("w")
+                                                                )),
+                                                                new CompoundStatement(
+                                                                        new PrintStatement(new VariableExpression("v")),
+                                                                        new CompoundStatement(
+                                                                                new ForkStatement(
+                                                                                        new CallStatement("product", Arrays.asList(
+                                                                                                new VariableExpression("v"),
+                                                                                                new VariableExpression("w")
+                                                                                        ))
+                                                                                ),
+                                                                                new ForkStatement(
+                                                                                        new CallStatement("sum", Arrays.asList(
+                                                                                                new VariableExpression("v"),
+                                                                                                new VariableExpression("w")
+                                                                                        ))
+                                                                                )
+                                                                        )
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+        all.add(ex12);
+
+
 
         return FXCollections.observableArrayList(all);
     }
