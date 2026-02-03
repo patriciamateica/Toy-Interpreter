@@ -15,6 +15,8 @@ import model.adt.list.IList;
 import model.adt.list.ListOut;
 import model.adt.map.IMap;
 import model.adt.map.MapSymbolTable;
+import model.adt.semaphore.ISemaphore;
+import model.adt.semaphore.MySemaphore;
 import model.adt.stack.ExecutionStack;
 import model.adt.stack.IStack;
 import model.expression.*;
@@ -58,40 +60,33 @@ public class ProgramChooserController {
         Statement selected = programsListView.getSelectionModel().getSelectedItem();
         if (selected == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error encountered!");
-            alert.setContentText("No statement selected!");
+            alert.setTitle("Error");
+            alert.setContentText("No program selected!");
             alert.showAndWait();
             return;
         }
 
         try {
             selected.typecheck(new MapSymbolTable<>());
-
-            IStack stack = new ExecutionStack();
+            IStack exeStack = new ExecutionStack();
             IMap<String, Value> symTable = new MapSymbolTable<>();
-            IList<Value> out = new ListOut<>();
+            IList<Value> out = new ListOut();
             FileTable fileTable = new MapFileTable();
-            IHeap<Value> heap = new MyHeap<>();
-
-            ProgramState programState = new ProgramState(stack, symTable, out, fileTable, selected, heap, 0);
-
+            IHeap<Value> heap = new MyHeap();
+            ISemaphore semaphoreTable = new MySemaphore();
+            ProgramState prg = new ProgramState(exeStack, symTable, out, fileTable, selected, heap, semaphoreTable, 0);
             IRepository repo = new SingleProgramRepository();
-            List<ProgramState> list = new ArrayList<>();
-            list.add(programState);
-            repo.setPrgList(list);
-
-            Controller controller = new Controller(repo);
-
-            if (programExecutorController != null) {
-                programExecutorController.setController(controller);
-            }
+            repo.getPrgList().add(prg);
+            Controller ctrl = new Controller(repo);
+            programExecutorController.setController(ctrl);
         } catch (MyException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error encountered!");
+            alert.setTitle("Error");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
     }
+
 
 
 
@@ -115,19 +110,11 @@ public class ProgramChooserController {
         Statement ex2 = new CompoundStatement(
                 new VariableDeclarationStatement(new Integer(), "a"),
                 new CompoundStatement(
-                        new AssignmentStatement(
-                                new ArithmeticExpression(1,
-                                        new ValueExpression(new IntegerValue(2)),
-                                        new ArithmeticExpression(3,
-                                                new ValueExpression(new IntegerValue(3)),
-                                                new ValueExpression(new IntegerValue(5)))
-                                ), "a"),
+                        new AssignmentStatement(new ArithmeticExpression(1, new ValueExpression(new IntegerValue(2)), new ArithmeticExpression(3, new ValueExpression(new IntegerValue(3)), new ValueExpression(new IntegerValue(5)))), "a"),
                         new CompoundStatement(
                                 new VariableDeclarationStatement(new Integer(), "b"),
                                 new CompoundStatement(
-                                        new AssignmentStatement(new ArithmeticExpression(1,
-                                                new VariableExpression("a"),
-                                                new ValueExpression(new IntegerValue(1))), "b"),
+                                        new AssignmentStatement(new ArithmeticExpression(1, new VariableExpression("a"), new ValueExpression(new IntegerValue(1))), "b"),
                                         new PrintStatement(new VariableExpression("b"))
                                 )
                         )
@@ -143,9 +130,11 @@ public class ProgramChooserController {
                         new CompoundStatement(
                                 new VariableDeclarationStatement(new Integer(), "v"),
                                 new CompoundStatement(
-                                        new IfStatement(new VariableExpression("a"),
+                                        new IfStatement(
+                                                new VariableExpression("a"),
                                                 new AssignmentStatement(new ValueExpression(new IntegerValue(2)), "v"),
-                                                new AssignmentStatement(new ValueExpression(new IntegerValue(3)), "v")),
+                                                new AssignmentStatement(new ValueExpression(new IntegerValue(3)), "v")
+                                        ),
                                         new PrintStatement(new VariableExpression("v"))
                                 )
                         )
@@ -200,10 +189,7 @@ public class ProgramChooserController {
                                 new PrintStatement(new rhExpression(new VariableExpression("v"))),
                                 new CompoundStatement(
                                         new whStatement("v", new ValueExpression(new IntegerValue(30))),
-                                        new PrintStatement(new ArithmeticExpression(1,
-                                                new rhExpression(new VariableExpression("v")),
-                                                new ValueExpression(new IntegerValue(5))
-                                        ))
+                                        new PrintStatement(new ArithmeticExpression(1, new rhExpression(new VariableExpression("v")), new ValueExpression(new IntegerValue(5))))
                                 )
                         )
                 )
@@ -217,7 +203,7 @@ public class ProgramChooserController {
                         new AssignmentStatement(new ValueExpression(new IntegerValue(4)), "v"),
                         new CompoundStatement(
                                 new WhileStatement(
-                                        new model.expression.RelationalExpression(">", new VariableExpression("v"), new ValueExpression(new IntegerValue(0))),
+                                        new RelationalExpression(">", new VariableExpression("v"), new ValueExpression(new IntegerValue(0))),
                                         new CompoundStatement(
                                                 new PrintStatement(new VariableExpression("v")),
                                                 new AssignmentStatement(new ArithmeticExpression(2, new VariableExpression("v"), new ValueExpression(new IntegerValue(1))), "v")
@@ -299,7 +285,8 @@ public class ProgramChooserController {
                                 new AssignmentStatement(new ValueExpression(new IntegerValue(5)), "a"),
                                 new CompoundStatement(
                                         new AssignmentStatement(new ValueExpression(new IntegerValue(7)), "b"),
-                                        new IfStatement(new model.expression.RelationalExpression(">", new VariableExpression("a"), new VariableExpression("b")),
+                                        new IfStatement(
+                                                new RelationalExpression(">", new VariableExpression("a"), new VariableExpression("b")),
                                                 new PrintStatement(new VariableExpression("a")),
                                                 new PrintStatement(new VariableExpression("b"))
                                         )
@@ -341,6 +328,52 @@ public class ProgramChooserController {
                 )
         );
         all.add(ex11);
+
+        // Example 12: Semaphore Test
+        Statement ex12 = new CompoundStatement(
+                new VariableDeclarationStatement(new RefType(new Integer()), "v1"),
+                new CompoundStatement(new VariableDeclarationStatement(new Integer(), "cnt"),
+                        new CompoundStatement(new newStatement("v1", new ValueExpression(new IntegerValue(1))),
+                                new CompoundStatement(new CreateSemaphoreStatement("cnt", new rhExpression(new VariableExpression("v1"))),
+                                        new CompoundStatement(
+                                                new ForkStatement(new CompoundStatement(
+                                                        new AcquireStatement("cnt"),
+                                                        new CompoundStatement(
+                                                                new whStatement("v1", new ArithmeticExpression(3, new rhExpression(new VariableExpression("v1")), new ValueExpression(new IntegerValue(10)))),
+                                                                new CompoundStatement(
+                                                                        new PrintStatement(new rhExpression(new VariableExpression("v1"))),
+                                                                        new ReleaseStatement("cnt")
+                                                                )
+                                                        )
+                                                )),
+                                                new CompoundStatement(
+                                                        new ForkStatement(new CompoundStatement(
+                                                                new AcquireStatement("cnt"),
+                                                                new CompoundStatement(
+                                                                        new whStatement("v1", new ArithmeticExpression(3, new rhExpression(new VariableExpression("v1")), new ValueExpression(new IntegerValue(10)))),
+                                                                        new CompoundStatement(
+                                                                                new whStatement("v1", new ArithmeticExpression(3, new rhExpression(new VariableExpression("v1")), new ValueExpression(new IntegerValue(2)))),
+                                                                                new CompoundStatement(
+                                                                                        new PrintStatement(new rhExpression(new VariableExpression("v1"))),
+                                                                                        new ReleaseStatement("cnt")
+                                                                                )
+                                                                        )
+                                                                )
+                                                        )),
+                                                        new CompoundStatement(
+                                                                new AcquireStatement("cnt"),
+                                                                new CompoundStatement(
+                                                                        new PrintStatement(new ArithmeticExpression(2, new rhExpression(new VariableExpression("v1")), new ValueExpression(new IntegerValue(1)))),
+                                                                        new ReleaseStatement("cnt")
+                                                                )
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+        all.add(ex12);
 
         return FXCollections.observableArrayList(all);
     }

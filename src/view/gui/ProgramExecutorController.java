@@ -11,6 +11,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import model.adt.semaphore.ISemaphore;
 import model.state.ProgramState;
 import model.adt.heap.IHeap;
 import model.value.Value;
@@ -69,6 +70,18 @@ public class ProgramExecutorController {
     private ListView<String> executionStackListView;
 
     @FXML
+    private TableView<Pair<Integer, javafx.util.Pair<Integer, List<Integer>>>> semaphoreTableView;
+
+    @FXML
+    private TableColumn<Pair<Integer, javafx.util.Pair<Integer, List<Integer>>>, Integer> semaphoreIndexColumn;
+
+    @FXML
+    private TableColumn<Pair<Integer, javafx.util.Pair<Integer, List<Integer>>>, Integer> semaphoreValueColumn;
+
+    @FXML
+    private TableColumn<Pair<Integer, javafx.util.Pair<Integer, List<Integer>>>, String> semaphoreListColumn;
+
+    @FXML
     private Button runOneStepButton;
 
     @FXML
@@ -88,6 +101,10 @@ public class ProgramExecutorController {
         valueColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().second.toString()));
         variableNameColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().first));
         variableValueColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().second.toString()));
+
+        semaphoreIndexColumn.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().first).asObject());
+        semaphoreValueColumn.setCellValueFactory(p -> new SimpleIntegerProperty(p.getValue().second.getKey()).asObject());
+        semaphoreListColumn.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().second.getValue().toString()));
     }
 
     private ProgramState getCurrentProgramState() {
@@ -110,6 +127,7 @@ public class ProgramExecutorController {
         populateProgramStateIdentifiersListView();
         populateSymbolTableView();
         populateExecutionStackListView();
+        populateSemaphoreTableView();
     }
 
     @FXML
@@ -137,6 +155,22 @@ public class ProgramExecutorController {
             }
         }
         heapTableView.setItems(FXCollections.observableArrayList(heapEntries));
+    }
+
+    private void populateSemaphoreTableView() {
+        ProgramState programState = getCurrentProgramState();
+        if (programState == null) {
+            semaphoreTableView.setItems(FXCollections.observableArrayList(new ArrayList<>()));
+            return;
+        }
+        ISemaphore semaphoreTable = programState.getSemaphoreTable();
+        ArrayList<Pair<Integer, javafx.util.Pair<Integer, List<Integer>>>> semaphoreEntries = new ArrayList<>();
+        if (semaphoreTable != null && semaphoreTable.getContent() != null) {
+            for (Map.Entry<Integer, javafx.util.Pair<Integer, List<Integer>>> entry : semaphoreTable.getContent().entrySet()) {
+                semaphoreEntries.add(new Pair<>(entry.getKey(), entry.getValue()));
+            }
+        }
+        semaphoreTableView.setItems(FXCollections.observableArrayList(semaphoreEntries));
     }
 
     private void populateOutputListView() {

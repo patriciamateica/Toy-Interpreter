@@ -5,6 +5,7 @@ import model.adt.dictfile.FileTable;
 import model.adt.stack.IStack;
 import model.adt.map.IMap;
 import model.adt.list.IList;
+import model.adt.semaphore.ISemaphore;
 import model.statement.Statement;
 import model.value.Value;
 import model.adt.heap.IHeap;
@@ -16,10 +17,11 @@ public class ProgramState {
     private FileTable fileTable;
     private Statement originalProgram;
     private IHeap heap;
+    private ISemaphore semaphoreTable;
     private final int id;
     private static int lastId = 0;
 
-    public ProgramState(IStack stk, IMap symtbl, IList<Value> ot, FileTable fileTable, Statement prg, IHeap heap, int ignoredId) {
+    public ProgramState(IStack stk, IMap symtbl, IList<Value> ot, FileTable fileTable, Statement prg, IHeap heap, ISemaphore semaphoreTable, int ignoredId) {
         this.exeStack = stk;
         this.symTable = symtbl;
         this.out = ot;
@@ -29,11 +31,12 @@ public class ProgramState {
             this.exeStack.push(this.originalProgram);
         }
         this.heap = heap;
-        this.id = nextId(); //static synchronized method and the increments happen under a class lock (we avoid having duplicate ids when multiple threads create ProgramState instances)
+        this.semaphoreTable = semaphoreTable;
+        this.id = nextId();
     }
 
-    public ProgramState(IStack stk, IMap symtbl, IList<Value> ot, FileTable fileTable, IHeap heap, int ignoredId) {
-        this(stk, symtbl, ot, fileTable, null, heap, ignoredId);
+    public ProgramState(IStack stk, IMap symtbl, IList<Value> ot, FileTable fileTable, IHeap heap, ISemaphore semaphoreTable, int ignoredId) {
+        this(stk, symtbl, ot, fileTable, null, heap, semaphoreTable, ignoredId);
     }
 
     public IStack getExeStack() {
@@ -88,6 +91,14 @@ public class ProgramState {
         this.heap = heap;
     }
 
+    public ISemaphore getSemaphoreTable() {
+        return semaphoreTable;
+    }
+
+    public void setSemaphoreTable(ISemaphore semaphoreTable) {
+        this.semaphoreTable = semaphoreTable;
+    }
+
     public int getId() {
         return id;
     }
@@ -96,12 +107,10 @@ public class ProgramState {
         return ++lastId;
     }
 
-    //
     public boolean isNotCompleted() {
         return !exeStack.isEmpty();
     }
 
-    //
     public ProgramState oneStep() throws MyException {
         if (exeStack.isEmpty()) {
             throw new MyException("prgstate stack is empty");
@@ -109,10 +118,6 @@ public class ProgramState {
         Statement crtStmt = exeStack.pop();
         return crtStmt.execute(this);
     }
-    /*
-    * - if the execution stack is empty, throw an exception.
-    * - otherwise, pop the top statement from the stack and execute it.
-     */
 
     @Override
     public String toString() {
@@ -122,7 +127,8 @@ public class ProgramState {
         sb.append("  symTable=").append(symTable).append(",\n");
         sb.append("  out=").append(out).append(",\n");
         sb.append("  fileTable=").append(String.valueOf(fileTable)).append(",\n");
-        sb.append("  heap=").append(heap).append("\n");
+        sb.append("  heap=").append(heap).append(",\n");
+        sb.append("  semaphoreTable=").append(semaphoreTable).append("\n");
         return sb.toString();
     }
 }

@@ -22,6 +22,7 @@ public class Controller {
 
     public Controller(IRepository repo) {
         this.repo = repo;
+        this.executor = Executors.newFixedThreadPool(2);
     }
 
     //
@@ -36,6 +37,7 @@ public class Controller {
 
 
     //
+
     public void oneStepForAllPrg(List<ProgramState> prgList) throws InterruptedException {
         List<ProgramState> active = removeCompletedPrg(prgList);
         if (active.isEmpty()) {

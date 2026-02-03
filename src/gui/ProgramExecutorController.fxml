@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
-           prefWidth="850.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+           prefWidth="1050.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="view.gui.ProgramExecutorController">
     <VBox alignment="TOP_CENTER" prefHeight="513.0" prefWidth="850.0">
         <BorderPane prefHeight="92.0" prefWidth="850.0"/>
@@ -77,6 +77,23 @@
                         <Insets/>
                     </VBox.margin>
                 </ListView>
+            </VBox>
+            <VBox alignment="TOP_CENTER">
+                <HBox.margin>
+                    <Insets left="5.0" right="5.0"/>
+                </HBox.margin>
+                <Label text="SemaphoreTable" textFill="#03818f">
+                    <font>
+                        <Font name="0xProto Nerd Font" size="12.0"/>
+                    </font>
+                </Label>
+                <TableView fx:id="semaphoreTableView" prefHeight="200.0" prefWidth="200.0" style="-fx-font-family: &quot;0xProto Nerd Font Mono&quot;;">
+                    <columns>
+                        <TableColumn fx:id="semaphoreIndexColumn" prefWidth="75.0" text="Index" />
+                        <TableColumn fx:id="semaphoreValueColumn" prefWidth="75.0" text="Value" />
+                        <TableColumn fx:id="semaphoreListColumn" prefWidth="75.0" text="List" />
+                    </columns>
+                </TableView>
             </VBox>
         </HBox>
         <HBox alignment="TOP_CENTER">

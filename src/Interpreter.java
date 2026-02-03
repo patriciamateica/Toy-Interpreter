@@ -7,6 +7,8 @@ import model.adt.list.ListOut;
 import model.adt.list.IList;
 import model.adt.map.MapSymbolTable;
 import model.adt.map.IMap;
+import model.adt.semaphore.ISemaphore;
+import model.adt.semaphore.MySemaphore;
 import model.adt.stack.IStack;
 import model.adt.stack.ExecutionStack;
 import model.state.*;
@@ -357,8 +359,9 @@ public class Interpreter {
         IList out = new ListOut();
         FileTable fileTable = new MapFileTable();
         IHeap heap = new MyHeap();
+        ISemaphore semaphoreTable = new MySemaphore();
         stack.push(program);
-        return new ProgramState(stack, symTable, out, fileTable, heap, 0);
+        return new ProgramState(stack, symTable, out, fileTable, heap, semaphoreTable, 0);
     }
 
 
