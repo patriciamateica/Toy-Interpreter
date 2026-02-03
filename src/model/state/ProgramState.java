@@ -34,6 +34,7 @@ public class ProgramState {
         this.semaphoreTable = semaphoreTable;
         this.id = nextId();
     }
+    //added semaphore table to programstate constructor
 
     public ProgramState(IStack stk, IMap symtbl, IList<Value> ot, FileTable fileTable, IHeap heap, ISemaphore semaphoreTable, int ignoredId) {
         this(stk, symtbl, ot, fileTable, null, heap, semaphoreTable, ignoredId);

@@ -27,7 +27,6 @@ public class CreateSemaphoreStatement implements Statement {
         IMap<String, Value> symTable = state.getSymTable();
         ISemaphore semaphoreTable = state.getSemaphoreTable();
 
-        // Check if var exists in SymTable and has type int
         if (!symTable.isDefined(var)) {
             throw new MyException("Variable " + var + " is not defined in the symbol table");
         }
@@ -37,42 +36,39 @@ public class CreateSemaphoreStatement implements Statement {
             throw new MyException("Variable " + var + " must be of type int");
         }
 
-        // Evaluate exp1
         Value number1Value = (Value) exp1.evaluate(symTable, state.getHeap());
 
-        // Check if number1 is an integer
         if (!(number1Value instanceof IntegerValue)) {
             throw new MyException("Expression " + exp1 + " must evaluate to an integer");
         }
 
         int number1 = ((IntegerValue) number1Value).value();
 
-        // Get new free location from semaphore table (atomic operation)
         int newFreeLocation = semaphoreTable.getFreeAddress();
 
-        // Create new semaphore entry with (number1, empty list) - atomic operation
         semaphoreTable.put(newFreeLocation, new Pair<>(number1, new ArrayList<>()));
 
-        // Update SymTable with the new location
         symTable.update(var, new IntegerValue(newFreeLocation));
 
         return null;
     }
+    /*
+     * validates that 'var' exists and 'exp1' is an integer.
+     * creates a new entry in the global SemaphoreTable.
+     * updates 'var' to point to this new semaphore.
+     */
+
 
     @Override
     public IMap<String, Type> typecheck(IMap<String, Type> typeEnv) throws MyException {
-        // Check if var exists in type environment
         if (!typeEnv.isDefined(var)) {
             throw new MyException("Variable " + var + " is not defined in the type environment");
         }
 
-        // Check if var has type int
         Type varType = typeEnv.getValue(var);
         if (!(varType instanceof Integer)) {
             throw new MyException("Variable " + var + " must be of type int");
         }
-
-        // Check if exp1 has type int
         Type exp1Type = exp1.typecheck(typeEnv);
         if (!(exp1Type instanceof Integer)) {
             throw new MyException("Expression " + exp1 + " must be of type int");
@@ -80,6 +76,7 @@ public class CreateSemaphoreStatement implements Statement {
 
         return typeEnv;
     }
+    //var must be defined in the type environment and must be of type int. exp1 must be of type int.
 
     @Override
     public String toString() {

@@ -9,7 +9,5 @@ public interface ISemaphore {
     Pair<Integer, List<Integer>> get(int key);
     boolean containsKey(int key);
     int getFreeAddress();
-    void setFreeAddress(int freeAddress);
     Map<Integer, Pair<Integer, List<Integer>>> getContent();
-    void setContent(Map<Integer, Pair<Integer, List<Integer>>> newContent);
 }

@@ -27,7 +27,6 @@ public class OpenRFileStatement implements Statement {
 
     @Override
     public ProgramState execute(ProgramState state) throws MyException {
-        // cast the evaluated result to Value to fix the incompatible types error
         Value val = (Value) expression.evaluate(state.getSymTable(), state.getHeap());
         if (!(val instanceof StringValue)) {
             throw new MyException("OpenRFile: expression did not evaluate to a string");

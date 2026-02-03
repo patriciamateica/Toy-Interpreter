@@ -25,7 +25,6 @@ public class AcquireStatement implements Statement {
         IMap<String, Value> symTable = state.getSymTable();
         ISemaphore semaphoreTable = state.getSemaphoreTable();
 
-        // Check if var exists in SymTable and has type int
         if (!symTable.isDefined(var)) {
             throw new MyException("Variable " + var + " is not defined in the symbol table");
         }
@@ -37,12 +36,10 @@ public class AcquireStatement implements Statement {
 
         int foundIndex = ((IntegerValue) varValue).value();
 
-        // Check if foundIndex is in SemaphoreTable (atomic operation)
         if (!semaphoreTable.containsKey(foundIndex)) {
             throw new MyException("Index " + foundIndex + " is not in the semaphore table");
         }
 
-        // Retrieve the entry (atomic operation)
         Pair<java.lang.Integer, List<java.lang.Integer>> entry = semaphoreTable.get(foundIndex);
         int N1 = entry.getKey();
         List<java.lang.Integer> List1 = entry.getValue();
@@ -51,29 +48,40 @@ public class AcquireStatement implements Statement {
         int currentPrgStateId = state.getId();
 
         if (N1 > NL) {
-            // Check if current PrgState id is already in List1
             if (!List1.contains(currentPrgStateId)) {
-                // Add current PrgState id to List1 (atomic operation)
                 List<java.lang.Integer> newList = new ArrayList<>(List1);
                 newList.add(currentPrgStateId);
                 semaphoreTable.put(foundIndex, new Pair<>(N1, newList));
             }
         } else {
-            // Push acquire(var) back on the ExeStack
             state.getExeStack().push(this);
         }
+        // first case: space is available (Max > Current)
+            // we are not already in the list, so we take a spot.
+            // ee copy the list to ensure immutability/safety before updating
+            // update the table with the new list containing our ID
+            // we successfully acquired, not pushing anything back to stack.
+            // execution proceeds to the next statement.
+
+        // second case: semaphore is FULL (Max <= Current)
+            // we cannot enter. we must wait.
+            // push 'this' (AcquireStatement) back onto the stack.
+            // this forces the interpreter to execute 'acquire' again in the next step (busy wait).
 
         return null;
     }
+    /*
+     * handles the logic for acquiring a permit.
+     * if permits are available (N > Size), take one (add ID to list).
+     * if NO permits available, wait (push 'this' back to stack).
+     */
 
     @Override
     public IMap<String, Type> typecheck(IMap<String, Type> typeEnv) throws MyException {
-        // Check if var exists in type environment
         if (!typeEnv.isDefined(var)) {
             throw new MyException("Variable " + var + " is not defined in the type environment");
         }
 
-        // Check if var has type int
         Type varType = typeEnv.getValue(var);
         if (!(varType instanceof Integer)) {
             throw new MyException("Variable " + var + " must be of type int");
@@ -81,6 +89,7 @@ public class AcquireStatement implements Statement {
 
         return typeEnv;
     }
+    //ensures 'var' is defined and of type int.
 
     @Override
     public String toString() {

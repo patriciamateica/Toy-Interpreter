@@ -25,7 +25,6 @@ public class ReleaseStatement implements Statement {
         IMap<String, Value> symTable = state.getSymTable();
         ISemaphore semaphoreTable = state.getSemaphoreTable();
 
-        // Check if var exists in SymTable and has type int
         if (!symTable.isDefined(var)) {
             throw new MyException("Variable " + var + " is not defined in the symbol table");
         }
@@ -37,37 +36,42 @@ public class ReleaseStatement implements Statement {
 
         int foundIndex = ((IntegerValue) varValue).value();
 
-        // Check if foundIndex is in SemaphoreTable (atomic operation)
         if (!semaphoreTable.containsKey(foundIndex)) {
             throw new MyException("Index " + foundIndex + " is not in the semaphore table");
         }
 
-        // Retrieve the entry (atomic operation)
         Pair<java.lang.Integer, List<java.lang.Integer>> entry = semaphoreTable.get(foundIndex);
         int N1 = entry.getKey();
         List<java.lang.Integer> List1 = entry.getValue();
 
         int currentPrgStateId = state.getId();
 
-        // Check if current PrgState id is in List1
         if (List1.contains(currentPrgStateId)) {
-            // Remove current PrgState id from List1 (atomic operation)
+            // if this thread is currently holding a permit (is in the list), remove it.
+            // we create a copy of the list to modify it safely.
             List<java.lang.Integer> newList = new ArrayList<>(List1);
             newList.remove((java.lang.Integer) currentPrgStateId);
+
+            // update the table with the new, shorter list.
+            // reducing the list size means 'acquire' checks (size < N) might now succeed for others.
             semaphoreTable.put(foundIndex, new Pair<>(N1, newList));
         }
+        // if the thread was NOT in the list, we do nothing (it likely didn't acquire it properly or already released).
 
         return null;
     }
+    /*
+     * handles the logic for releasing a permit.
+     * finds the semaphore.
+     * removes the current thread ID from the list of "active" threads.
+     * this effectively "opens a slot" for other waiting threads.
+     */
 
     @Override
     public IMap<String, Type> typecheck(IMap<String, Type> typeEnv) throws MyException {
-        // Check if var exists in type environment
         if (!typeEnv.isDefined(var)) {
             throw new MyException("Variable " + var + " is not defined in the type environment");
         }
-
-        // Check if var has type int
         Type varType = typeEnv.getValue(var);
         if (!(varType instanceof Integer)) {
             throw new MyException("Variable " + var + " must be of type int");

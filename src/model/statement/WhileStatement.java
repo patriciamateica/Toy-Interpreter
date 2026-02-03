@@ -23,7 +23,6 @@ public class WhileStatement implements Statement {
     @Override
     public ProgramState execute(ProgramState state) throws MyException {
         IStack exeStack = state.getExeStack();
-        // cast because the project's Expression.evaluate currently resolves to Object at compile-time
         Value value = (Value) expression.evaluate(state.getSymTable(), state.getHeap());
         if (!(value instanceof BooleanValue))
             throw new InvalidTypeException("Type mismatch: while condition must be boolean");

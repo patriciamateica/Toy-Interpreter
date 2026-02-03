@@ -31,6 +31,7 @@ public class ForkStatement implements Statement {
         IStack childStack = new ExecutionStack();
 
         return new ProgramState(childStack, clonedSymTable, out, fileTable, statement, heap, semaphoreTable, 0);
+        //added semaphore table to programstate constructor
     }
 
     @Override
