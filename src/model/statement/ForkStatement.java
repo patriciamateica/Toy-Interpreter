@@ -37,7 +37,7 @@ public class ForkStatement implements Statement {
         IStack childStack = new ExecutionStack();
 
         return new ProgramState(childStack, clonedSymTableStack, out, fileTable, statement, heap, procTable, 0);
-    }
+    } // added procedure entry table
 
     @Override
     public IMap<String, Type> typecheck(IMap<String, Type> typeEnv) throws MyException {

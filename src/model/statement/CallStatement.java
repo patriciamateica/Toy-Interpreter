@@ -54,6 +54,13 @@ public class CallStatement implements Statement {
 
         return null;
     }
+    /*
+     * handles the context switch from "Main" to "Procedure".
+     * evaluates arguments in the CURRENT scope.
+     * creates a NEW scope (SymbolTable) for the procedure.
+     * maps parameters to values in that new scope.
+     * pushes the body of the procedure onto the execution stack.
+     */
 
     @Override
     public IMap<String, Type> typecheck(IMap<String, Type> typeEnv) throws MyException {

@@ -30,6 +30,10 @@ public class CreateProcedureStatement implements Statement {
         procTable.add(procName, params, body);
         return null;
     }
+    /*
+     * this simply "teaches" the program a new function.
+     * it stores the function definition in the ProcTable for later use.
+     */
 
     @Override
     public IMap<String, Type> typecheck(IMap<String, Type> typeEnv) throws MyException {
