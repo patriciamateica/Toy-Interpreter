@@ -3385,3 +3385,872 @@ ProgramState[id=3]
   barrierTable={1=(3, [2, 1, 3])}
 
 ---
+ProgramState id: 1
+Step 0:
+ProgramState[id=1]
+  exeStack=ExeStack[(Ref(int) v1; (Ref(int) v2; (Ref(int) v3; (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3))))))))))))],
+  symTable={},
+  out=[],
+  fileTable={},
+  heap={},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 1:
+ProgramState[id=1]
+  exeStack=ExeStack[Ref(int) v1, (Ref(int) v2; (Ref(int) v3; (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))))))))))],
+  symTable={},
+  out=[],
+  fileTable={},
+  heap={},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 2:
+ProgramState[id=1]
+  exeStack=ExeStack[Ref(int) v1, (Ref(int) v2; (Ref(int) v3; (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))))))))))],
+  symTable={},
+  out=[],
+  fileTable={},
+  heap={},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 3:
+ProgramState[id=1]
+  exeStack=ExeStack[(Ref(int) v2; (Ref(int) v3; (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))))))))))],
+  symTable={v1=(0,int)},
+  out=[],
+  fileTable={},
+  heap={},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 4:
+ProgramState[id=1]
+  exeStack=ExeStack[(Ref(int) v2; (Ref(int) v3; (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))))))))))],
+  symTable={v1=(0,int)},
+  out=[],
+  fileTable={},
+  heap={},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 5:
+ProgramState[id=1]
+  exeStack=ExeStack[Ref(int) v2, (Ref(int) v3; (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3))))))))))],
+  symTable={v1=(0,int)},
+  out=[],
+  fileTable={},
+  heap={},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 6:
+ProgramState[id=1]
+  exeStack=ExeStack[Ref(int) v2, (Ref(int) v3; (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3))))))))))],
+  symTable={v1=(0,int)},
+  out=[],
+  fileTable={},
+  heap={},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 7:
+ProgramState[id=1]
+  exeStack=ExeStack[(Ref(int) v3; (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3))))))))))],
+  symTable={v1=(0,int), v2=(0,int)},
+  out=[],
+  fileTable={},
+  heap={},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 8:
+ProgramState[id=1]
+  exeStack=ExeStack[(Ref(int) v3; (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3))))))))))],
+  symTable={v1=(0,int), v2=(0,int)},
+  out=[],
+  fileTable={},
+  heap={},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 9:
+ProgramState[id=1]
+  exeStack=ExeStack[Ref(int) v3, (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))))))))],
+  symTable={v1=(0,int), v2=(0,int)},
+  out=[],
+  fileTable={},
+  heap={},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 10:
+ProgramState[id=1]
+  exeStack=ExeStack[Ref(int) v3, (int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))))))))],
+  symTable={v1=(0,int), v2=(0,int)},
+  out=[],
+  fileTable={},
+  heap={},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 11:
+ProgramState[id=1]
+  exeStack=ExeStack[(int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))))))))],
+  symTable={v1=(0,int), v2=(0,int), v3=(0,int)},
+  out=[],
+  fileTable={},
+  heap={},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 12:
+ProgramState[id=1]
+  exeStack=ExeStack[(int cnt; (new(v1, 2); (new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))))))))],
+  symTable={v1=(0,int), v2=(0,int), v3=(0,int)},
+  out=[],
+  fileTable={},
+  heap={},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 13:
+ProgramState[id=1]
+  exeStack=ExeStack[int cnt, (new(v1, 2); (new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3))))))))],
+  symTable={v1=(0,int), v2=(0,int), v3=(0,int)},
+  out=[],
+  fileTable={},
+  heap={},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 14:
+ProgramState[id=1]
+  exeStack=ExeStack[int cnt, (new(v1, 2); (new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3))))))))],
+  symTable={v1=(0,int), v2=(0,int), v3=(0,int)},
+  out=[],
+  fileTable={},
+  heap={},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 15:
+ProgramState[id=1]
+  exeStack=ExeStack[(new(v1, 2); (new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3))))))))],
+  symTable={cnt=0, v1=(0,int), v2=(0,int), v3=(0,int)},
+  out=[],
+  fileTable={},
+  heap={},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 16:
+ProgramState[id=1]
+  exeStack=ExeStack[(new(v1, 2); (new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3))))))))],
+  symTable={cnt=0, v1=(0,int), v2=(0,int), v3=(0,int)},
+  out=[],
+  fileTable={},
+  heap={},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 17:
+ProgramState[id=1]
+  exeStack=ExeStack[new(v1, 2), (new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))))))],
+  symTable={cnt=0, v1=(0,int), v2=(0,int), v3=(0,int)},
+  out=[],
+  fileTable={},
+  heap={},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 18:
+ProgramState[id=1]
+  exeStack=ExeStack[new(v1, 2), (new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))))))],
+  symTable={cnt=0, v1=(0,int), v2=(0,int), v3=(0,int)},
+  out=[],
+  fileTable={},
+  heap={},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 19:
+ProgramState[id=1]
+  exeStack=ExeStack[(new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))))))],
+  symTable={cnt=0, v1=(1,int), v2=(0,int), v3=(0,int)},
+  out=[],
+  fileTable={},
+  heap={1=2},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 20:
+ProgramState[id=1]
+  exeStack=ExeStack[(new(v2, 3); (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))))))],
+  symTable={cnt=0, v1=(1,int), v2=(0,int), v3=(0,int)},
+  out=[],
+  fileTable={},
+  heap={1=2},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 21:
+ProgramState[id=1]
+  exeStack=ExeStack[new(v2, 3), (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3))))))],
+  symTable={cnt=0, v1=(1,int), v2=(0,int), v3=(0,int)},
+  out=[],
+  fileTable={},
+  heap={1=2},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 22:
+ProgramState[id=1]
+  exeStack=ExeStack[new(v2, 3), (new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3))))))],
+  symTable={cnt=0, v1=(1,int), v2=(0,int), v3=(0,int)},
+  out=[],
+  fileTable={},
+  heap={1=2},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 23:
+ProgramState[id=1]
+  exeStack=ExeStack[(new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3))))))],
+  symTable={cnt=0, v1=(1,int), v2=(2,int), v3=(0,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 24:
+ProgramState[id=1]
+  exeStack=ExeStack[(new(v3, 4); (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3))))))],
+  symTable={cnt=0, v1=(1,int), v2=(2,int), v3=(0,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 25:
+ProgramState[id=1]
+  exeStack=ExeStack[new(v3, 4), (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))))],
+  symTable={cnt=0, v1=(1,int), v2=(2,int), v3=(0,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 26:
+ProgramState[id=1]
+  exeStack=ExeStack[new(v3, 4), (newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))))],
+  symTable={cnt=0, v1=(1,int), v2=(2,int), v3=(0,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 27:
+ProgramState[id=1]
+  exeStack=ExeStack[(newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))))],
+  symTable={cnt=0, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 28:
+ProgramState[id=1]
+  exeStack=ExeStack[(newBarrier(cnt, rH(v2)); (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))))],
+  symTable={cnt=0, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 29:
+ProgramState[id=1]
+  exeStack=ExeStack[newBarrier(cnt, rH(v2)), (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3))))],
+  symTable={cnt=0, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 30:
+ProgramState[id=1]
+  exeStack=ExeStack[newBarrier(cnt, rH(v2)), (fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3))))],
+  symTable={cnt=0, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={}
+
+---
+ProgramState id: 1
+Step 31:
+ProgramState[id=1]
+  exeStack=ExeStack[(fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3))))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [])}
+
+---
+ProgramState id: 1
+Step 32:
+ProgramState[id=1]
+  exeStack=ExeStack[(fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))); (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3))))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [])}
+
+---
+ProgramState id: 1
+Step 33:
+ProgramState[id=1]
+  exeStack=ExeStack[fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))), (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [])}
+
+---
+ProgramState id: 1
+Step 34:
+ProgramState[id=1]
+  exeStack=ExeStack[fork((await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))), (fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [])}
+
+---
+ProgramState id: 1
+Step 35:
+ProgramState[id=1]
+  exeStack=ExeStack[(fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [])}
+
+---
+ProgramState id: 2
+Step 36:
+ProgramState[id=2]
+  exeStack=ExeStack[(await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [])}
+
+---
+ProgramState id: 1
+Step 37:
+ProgramState[id=1]
+  exeStack=ExeStack[(fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))); (await(cnt); print rH(v3)))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [])}
+
+---
+ProgramState id: 2
+Step 38:
+ProgramState[id=2]
+  exeStack=ExeStack[(await(cnt); (wH(v1, (rH(v1) * 10)); print rH(v1)))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [])}
+
+---
+ProgramState id: 1
+Step 39:
+ProgramState[id=1]
+  exeStack=ExeStack[fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))), (await(cnt); print rH(v3))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [])}
+
+---
+ProgramState id: 2
+Step 40:
+ProgramState[id=2]
+  exeStack=ExeStack[await(cnt), (wH(v1, (rH(v1) * 10)); print rH(v1))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [])}
+
+---
+ProgramState id: 1
+Step 41:
+ProgramState[id=1]
+  exeStack=ExeStack[fork((await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))), (await(cnt); print rH(v3))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [])}
+
+---
+ProgramState id: 2
+Step 42:
+ProgramState[id=2]
+  exeStack=ExeStack[await(cnt), (wH(v1, (rH(v1) * 10)); print rH(v1))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [])}
+
+---
+ProgramState id: 1
+Step 43:
+ProgramState[id=1]
+  exeStack=ExeStack[(await(cnt); print rH(v3))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2])}
+
+---
+ProgramState id: 2
+Step 44:
+ProgramState[id=2]
+  exeStack=ExeStack[await(cnt), (wH(v1, (rH(v1) * 10)); print rH(v1))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2])}
+
+---
+ProgramState id: 3
+Step 45:
+ProgramState[id=3]
+  exeStack=ExeStack[(await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2])}
+
+---
+ProgramState id: 1
+Step 46:
+ProgramState[id=1]
+  exeStack=ExeStack[(await(cnt); print rH(v3))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2])}
+
+---
+ProgramState id: 2
+Step 47:
+ProgramState[id=2]
+  exeStack=ExeStack[await(cnt), (wH(v1, (rH(v1) * 10)); print rH(v1))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2])}
+
+---
+ProgramState id: 3
+Step 48:
+ProgramState[id=3]
+  exeStack=ExeStack[(await(cnt); (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2))))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2])}
+
+---
+ProgramState id: 1
+Step 49:
+ProgramState[id=1]
+  exeStack=ExeStack[await(cnt), print rH(v3)],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2])}
+
+---
+ProgramState id: 2
+Step 50:
+ProgramState[id=2]
+  exeStack=ExeStack[await(cnt), (wH(v1, (rH(v1) * 10)); print rH(v1))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2])}
+
+---
+ProgramState id: 3
+Step 51:
+ProgramState[id=3]
+  exeStack=ExeStack[await(cnt), (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2)))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2])}
+
+---
+ProgramState id: 1
+Step 52:
+ProgramState[id=1]
+  exeStack=ExeStack[await(cnt), print rH(v3)],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2])}
+
+---
+ProgramState id: 2
+Step 53:
+ProgramState[id=2]
+  exeStack=ExeStack[await(cnt), (wH(v1, (rH(v1) * 10)); print rH(v1))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2])}
+
+---
+ProgramState id: 3
+Step 54:
+ProgramState[id=3]
+  exeStack=ExeStack[await(cnt), (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2)))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2])}
+
+---
+ProgramState id: 1
+Step 55:
+ProgramState[id=1]
+  exeStack=ExeStack[await(cnt), print rH(v3)],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 2
+Step 56:
+ProgramState[id=2]
+  exeStack=ExeStack[await(cnt), (wH(v1, (rH(v1) * 10)); print rH(v1))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 3
+Step 57:
+ProgramState[id=3]
+  exeStack=ExeStack[await(cnt), (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2)))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 1
+Step 58:
+ProgramState[id=1]
+  exeStack=ExeStack[await(cnt), print rH(v3)],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 2
+Step 59:
+ProgramState[id=2]
+  exeStack=ExeStack[await(cnt), (wH(v1, (rH(v1) * 10)); print rH(v1))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 3
+Step 60:
+ProgramState[id=3]
+  exeStack=ExeStack[await(cnt), (wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2)))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 1
+Step 61:
+ProgramState[id=1]
+  exeStack=ExeStack[print rH(v3)],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 2
+Step 62:
+ProgramState[id=2]
+  exeStack=ExeStack[(wH(v1, (rH(v1) * 10)); print rH(v1))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 3
+Step 63:
+ProgramState[id=3]
+  exeStack=ExeStack[(wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2)))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 1
+Step 64:
+ProgramState[id=1]
+  exeStack=ExeStack[print rH(v3)],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 2
+Step 65:
+ProgramState[id=2]
+  exeStack=ExeStack[(wH(v1, (rH(v1) * 10)); print rH(v1))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 3
+Step 66:
+ProgramState[id=3]
+  exeStack=ExeStack[(wH(v2, (rH(v2) * 10)); (wH(v2, (rH(v2) * 10)); print rH(v2)))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 2
+Step 67:
+ProgramState[id=2]
+  exeStack=ExeStack[wH(v1, (rH(v1) * 10)), print rH(v1)],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[4],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 3
+Step 68:
+ProgramState[id=3]
+  exeStack=ExeStack[wH(v2, (rH(v2) * 10)), (wH(v2, (rH(v2) * 10)); print rH(v2))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[4],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 2
+Step 69:
+ProgramState[id=2]
+  exeStack=ExeStack[wH(v1, (rH(v1) * 10)), print rH(v1)],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[4],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 3
+Step 70:
+ProgramState[id=3]
+  exeStack=ExeStack[wH(v2, (rH(v2) * 10)), (wH(v2, (rH(v2) * 10)); print rH(v2))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[4],
+  fileTable={},
+  heap={1=2, 2=3, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 2
+Step 71:
+ProgramState[id=2]
+  exeStack=ExeStack[print rH(v1)],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[4],
+  fileTable={},
+  heap={1=20, 2=30, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 3
+Step 72:
+ProgramState[id=3]
+  exeStack=ExeStack[(wH(v2, (rH(v2) * 10)); print rH(v2))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[4],
+  fileTable={},
+  heap={1=20, 2=30, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 2
+Step 73:
+ProgramState[id=2]
+  exeStack=ExeStack[print rH(v1)],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[4],
+  fileTable={},
+  heap={1=20, 2=30, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 3
+Step 74:
+ProgramState[id=3]
+  exeStack=ExeStack[(wH(v2, (rH(v2) * 10)); print rH(v2))],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[4],
+  fileTable={},
+  heap={1=20, 2=30, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 3
+Step 75:
+ProgramState[id=3]
+  exeStack=ExeStack[wH(v2, (rH(v2) * 10)), print rH(v2)],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[4, 20],
+  fileTable={},
+  heap={1=20, 2=30, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 3
+Step 76:
+ProgramState[id=3]
+  exeStack=ExeStack[wH(v2, (rH(v2) * 10)), print rH(v2)],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[4, 20],
+  fileTable={},
+  heap={1=20, 2=30, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 3
+Step 77:
+ProgramState[id=3]
+  exeStack=ExeStack[print rH(v2)],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[4, 20],
+  fileTable={},
+  heap={1=20, 2=300, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---
+ProgramState id: 3
+Step 78:
+ProgramState[id=3]
+  exeStack=ExeStack[print rH(v2)],
+  symTable={cnt=1, v1=(1,int), v2=(2,int), v3=(3,int)},
+  out=[4, 20],
+  fileTable={},
+  heap={1=20, 2=300, 3=4},
+  barrierTable={1=(3, [2, 1, 3])}
+
+---

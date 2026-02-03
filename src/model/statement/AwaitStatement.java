@@ -12,6 +12,7 @@ import model.value.Value;
 
 import java.util.List;
 
+//this implements the await(var) command. it acts as the "pause button" for threads. when a thread executes this, it checks a specific barrier to see if everyone has arrived
 public class AwaitStatement implements Statement {
     private final String var;
 
@@ -21,7 +22,6 @@ public class AwaitStatement implements Statement {
 
     @Override
     public ProgramState execute(ProgramState state) throws MyException {
-        // Get foundIndex from symbol table
         if (!state.getSymTable().isDefined(var)) {
             throw new MyException("Variable " + var + " is not defined in SymTable");
         }
@@ -33,41 +33,47 @@ public class AwaitStatement implements Statement {
 
         int foundIndex = ((IntegerValue) varValue).value();
 
-        // Check if foundIndex exists in barrier table
         IBarrier barrierTable = state.getBarrierTable();
         if (!barrierTable.contains(foundIndex)) {
             throw new MyException("Index " + foundIndex + " is not in the BarrierTable");
         }
 
-        // Retrieve the barrier entry
         Pair<java.lang.Integer, List<java.lang.Integer>> barrierEntry = barrierTable.get(foundIndex);
         int n1 = barrierEntry.getFirst();
         List<java.lang.Integer> list1 = barrierEntry.getSecond();
         int nl = list1.size();
 
-        // Check if N1 > NL
         if (n1 > nl) {
             int currentId = state.getId();
             if (list1.contains(currentId)) {
-                // Push back await(var) on the ExeStack
                 state.getExeStack().push(this);
             } else {
-                // Add current thread ID to the list
                 list1.add(currentId);
-                // Update the barrier table
                 barrierTable.update(foundIndex, new Pair<>(n1, list1));
-                // Push back await(var) on the ExeStack
                 state.getExeStack().push(this);
             }
         }
-        // If N1 <= NL, do nothing (barrier released)
+        // first case: barrier is not full yet so we must wait
+            // if i am already on the list, just wait.
+            // push 'this' back to stack to re-execute 'await' next step.
+            // if I am NOT on the list, add me!
+            // save the updated list back to the table
+            // wait (push 'this' back to stack)
 
+        // second case: n1 <= nl
+        // the barrier is full/open. we do NOT push 'this' back to the stack.
+        // the execution simply proceeds to the next statement.
         return null;
     }
+    /*
+     * handles the synchronization logic
+     * checks if the barrier limit has been reached
+     * if NOT reached -> adds current thread to list & pauses (pushes await back)
+     * if reached -> lets thread continue (does not push await back)
+     */
 
     @Override
     public IMap<String, Type> typecheck(IMap<String, Type> typeEnv) throws MyException {
-        // Check if variable is defined and is of type int
         if (!typeEnv.isDefined(var)) {
             throw new MyException("Variable " + var + " is not defined");
         }

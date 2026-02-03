@@ -32,6 +32,7 @@ public class ForkStatement implements Statement {
         IStack childStack = new ExecutionStack();
 
         return new ProgramState(childStack, clonedSymTable, out, fileTable, statement, heap, barrierTable, 0);
+        //added barrier table to the ProgramState constructor
     }
 
     /*

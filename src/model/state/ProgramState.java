@@ -34,6 +34,7 @@ public class ProgramState {
         this.barrierTable = barrierTable;
         this.id = nextId();
     }
+    //added the new barrier table to the ProgramState constructor
 
     public ProgramState(IStack stk, IMap symtbl, IList<Value> ot, FileTable fileTable, IHeap heap, IBarrier barrierTable, int ignoredId) {
         this(stk, symtbl, ot, fileTable, null, heap, barrierTable, ignoredId);

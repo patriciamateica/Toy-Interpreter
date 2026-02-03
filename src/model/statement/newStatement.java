@@ -35,8 +35,6 @@ public class newStatement implements Statement {
         if (!(varValue.getType() instanceof RefType)) {
             throw new InvalidTypeException("new: variable " + varName + " is not of RefType");
         }
-
-        // cast evaluate result to Value (expression API returns raw/object in this project)
         Value evaluated = (Value) expr.evaluate(symTable, heap);
 
         RefValue refVal = (RefValue) varValue;

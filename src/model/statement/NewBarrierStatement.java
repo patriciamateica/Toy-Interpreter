@@ -12,6 +12,7 @@ import model.value.Value;
 
 import java.util.ArrayList;
 
+//initializes a synchronization barrier with a given size
 public class NewBarrierStatement implements Statement {
     private final String var;
     private final Expression exp;
@@ -21,25 +22,21 @@ public class NewBarrierStatement implements Statement {
         this.exp = exp;
     }
 
+
     @Override
     public ProgramState execute(ProgramState state) throws MyException {
-        // Evaluate the expression
         Value value = (Value) exp.evaluate(state.getSymTable(), state.getHeap());
 
-        // Check if the result is an integer
         if (!(value instanceof IntegerValue)) {
             throw new MyException("Expression must evaluate to an integer");
         }
 
         int nr = ((IntegerValue) value).value();
 
-        // Get the barrier table
         IBarrier barrierTable = state.getBarrierTable();
 
-        // Allocate a new barrier (thread-safe operation)
         int newFreeLocation = barrierTable.allocate(nr, new ArrayList<>());
 
-        // Check if var exists in symbol table and has type int
         if (!state.getSymTable().isDefined(var)) {
             throw new MyException("Variable " + var + " is not defined");
         }
@@ -49,21 +46,24 @@ public class NewBarrierStatement implements Statement {
             throw new MyException("Variable " + var + " must be of type int");
         }
 
-        // Update symbol table with the new barrier address
         state.getSymTable().update(var, new IntegerValue(newFreeLocation));
 
         return null;
     }
+    /*
+     * evaluates the expression to find N (barrier limit)
+     * allocates a new slot in the BarrierTable
+     * updates 'var' in the SymbolTable to point to this new barrier index.
+   */
+
 
     @Override
     public IMap<String, Type> typecheck(IMap<String, Type> typeEnv) throws MyException {
-        // Check if expression type is int
         Type expType = exp.typecheck(typeEnv);
         if (!(expType instanceof Integer)) {
             throw new MyException("NewBarrier: expression must be of type int");
         }
 
-        // Check if variable is defined and is of type int
         if (!typeEnv.isDefined(var)) {
             throw new MyException("NewBarrier: variable " + var + " is not defined");
         }
@@ -75,6 +75,10 @@ public class NewBarrierStatement implements Statement {
 
         return typeEnv;
     }
+    /*
+     * ensures 'exp' evaluates to int and 'var' is of type int BEFORE execution
+     */
+
 
     @Override
     public String toString() {
