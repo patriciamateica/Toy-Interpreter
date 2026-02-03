@@ -12,14 +12,14 @@ import model.adt.stack.IStack;
 
 /**
  * repeat stmt until exp
- * desugars to:
+ * converts to:
  * stmt; (while(!exp) stmt)
  */
-public class RepeatUntil implements Statement {
+public class RepeatUntilStatement implements Statement {
     private final Statement stmt;
     private final Expression<Value> exp;
 
-    public RepeatUntil(Statement stmt, Expression<Value> exp) {
+    public RepeatUntilStatement(Statement stmt, Expression<Value> exp) {
         this.stmt = stmt;
         this.exp = exp;
     }
@@ -28,7 +28,7 @@ public class RepeatUntil implements Statement {
     public ProgramState execute(ProgramState state) throws MyException {
         IStack exeStack = state.getExeStack();
 
-        // desugar: stmt; (while(!exp) stmt)
+        // convert: stmt; (while(!exp) stmt)
         Statement desugared = new CompoundStatement(
                 stmt,
                 new WhileStatement(new NotExpression(exp), stmt)
@@ -44,8 +44,6 @@ public class RepeatUntil implements Statement {
         if (!t.equals(new Boolean())) {
             throw new MyException("RepeatUntil: condition expression must be of type bool");
         }
-
-        // typecheck the body (use a copy)
         stmt.typecheck(typeEnv.deepCopy());
         return typeEnv;
     }

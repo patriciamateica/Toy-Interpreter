@@ -39,7 +39,6 @@ public class WaitStatement implements Statement {
 
         int n = ((IntegerValue) v).value();
         if (n > 0) {
-            // push print(n); wait(n-1)
             Statement printN = new PrintStatement(new ValueExpression(new IntegerValue(n)));
             Statement waitNminus1 = new WaitStatement(new ValueExpression(new IntegerValue(n - 1)));
             exeStack.push(new CompoundStatement(printN, waitNminus1));
@@ -47,7 +46,17 @@ public class WaitStatement implements Statement {
 
         return null;
     }
-
+    /*
+    *step 1: evaluate the expression
+    *validation: must be an integer
+    *step 2: extract the integer value (N)
+    *step 3: recursive Logic
+    *create statement: print(n)
+    *create statement: wait(n - 1)
+    *combine them: print(n); wait(n-1)
+    *we push this compound statement to the stack to be executed next.
+    *implicit else: If n <= 0, we do nothing. The statement is removed from stack, recursion ends.
+    */
     @Override
     public IMap<String, Type> typecheck(IMap<String, Type> typeEnv) throws MyException {
         Type t = numberExp.typecheck(typeEnv);

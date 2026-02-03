@@ -1,4 +1,3 @@
-// java
 package model.statement;
 
 import exceptions.MyException;
@@ -14,7 +13,7 @@ public class NopStatement implements Statement {
 
     @Override
     public ProgramState execute(ProgramState state) throws MyException {
-        // do nothing
+        // do absolutely nothing
         return null;
     }
 

@@ -425,7 +425,7 @@ public class ProgramChooserController {
                                         new AssignmentStatement(new ValueExpression(new IntegerValue(0)), "v"),
                                         new CompoundStatement(
                                                 // repeat ( fork(print(v); v=v-1); v=v+1 ) until v==3
-                                                new RepeatUntil(
+                                                new RepeatUntilStatement(
                                                         new CompoundStatement(
                                                                 new ForkStatement(
                                                                         new CompoundStatement(

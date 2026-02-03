@@ -34,6 +34,13 @@ public class MulExpression implements Expression<Value> {
         int result = (a * b) - (a + b);
         return new IntegerValue(result);
     }
+    /*
+     * calculates the result of the MUL operation.
+     * evaluates both expressions to get their values.
+     * checks if both values are integers.
+     * performs the formula: (a * b) - (a + b).
+     * returns the result as a new Value.
+     */
 
     @Override
     public Type typecheck(IMap<String, Type> typeEnv) throws MyException {

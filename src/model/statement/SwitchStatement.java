@@ -48,8 +48,16 @@ public class SwitchStatement implements Statement {
             exeStack.push(stmt3);
         }
 
-        return null; // common pattern in this project: statements return null unless they create a new ProgramState
+        return null;
     }
+
+    /*
+     * we manually evaluate the main expression and the case expressions.
+     * we compare the results:
+     * - if exp == exp1, we schedule stmt1 for execution.
+     * - if exp == exp2, we schedule stmt2.
+     * - otherwise, we schedule the default stmt3.
+     */
 
     @Override
     public IMap<String, Type> typecheck(IMap<String, Type> typeEnv) throws MyException {
@@ -61,7 +69,6 @@ public class SwitchStatement implements Statement {
             throw new MyException("Switch: the three expressions must have the same type");
         }
 
-        // typecheck each branch on a copy of the environment
         stmt1.typecheck(typeEnv.deepCopy());
         stmt2.typecheck(typeEnv.deepCopy());
         stmt3.typecheck(typeEnv.deepCopy());

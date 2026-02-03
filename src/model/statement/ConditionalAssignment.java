@@ -26,8 +26,6 @@ public class ConditionalAssignment implements Statement {
     @Override
     public ProgramState execute(ProgramState state) throws MyException {
         IStack exeStack = state.getExeStack();
-
-        // desugar to: if(cond) then v = expTrue else v = expFalse
         Statement thenAssign = new AssignmentStatement(expTrue, varName);
         Statement elseAssign = new AssignmentStatement(expFalse, varName);
         Statement desugared = new IfStatement(cond, thenAssign, elseAssign);
@@ -35,6 +33,13 @@ public class ConditionalAssignment implements Statement {
         exeStack.push(desugared);
         return null;
     }
+    /*
+     * this method converts the conditional assignment statement into an if-then-else statement
+     * and pushes it onto the execution stack.
+     * instead of manually evaluating the condition and updating the table,
+     * we construct an equivalent 'IfStatement' that contains two 'AssignmentStatements'.
+     * we push this new statement to the stack to be executed next.
+     */
 
     @Override
     public IMap<String, Type> typecheck(IMap<String, Type> typeEnv) throws MyException {

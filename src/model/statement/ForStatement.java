@@ -14,7 +14,7 @@ import model.adt.heap.IHeap;
 
 /**
  * for(v=exp1; v<exp2; v=exp3) stmt
- * desugars to:
+ * is converted to:
  * int v; v=exp1; (while(v<exp2) stmt; v=exp3)
  */
 public class ForStatement implements Statement {
@@ -36,7 +36,7 @@ public class ForStatement implements Statement {
     public ProgramState execute(ProgramState state) throws MyException {
         IStack exeStack = state.getExeStack();
 
-        // desugar: int v; v=exp1; (while(v<exp2) { stmt; v=exp3 })
+        // convert: int v; v=exp1; (while(v<exp2) { stmt; v=exp3 })
         Statement decl = new VariableDeclarationStatement(new Integer(), varName);
         Statement init = new AssignmentStatement(exp1, varName);
         // condition: v < exp2
@@ -52,7 +52,6 @@ public class ForStatement implements Statement {
 
     @Override
     public IMap<String, Type> typecheck(IMap<String, Type> typeEnv) throws MyException {
-        // ensure the loop variable is available during typechecking of the expressions and the body
         IMap<String, Type> envWithV = typeEnv.deepCopy();
         envWithV.put(varName, new Integer());
 
@@ -62,8 +61,6 @@ public class ForStatement implements Statement {
 
         if (!t1.equals(new Integer()) || !t2.equals(new Integer()) || !t3.equals(new Integer()))
             throw new MyException("For: all three expressions must be of type int");
-
-        // typecheck the body with v declared
         body.typecheck(envWithV);
 
         return typeEnv;

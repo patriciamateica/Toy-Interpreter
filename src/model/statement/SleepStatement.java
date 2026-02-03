@@ -39,7 +39,6 @@ public class SleepStatement implements Statement {
 
         int n = ((IntegerValue) v).value();
         if (n > 0) {
-            // push sleep(n-1) as a literal-decremented sleep
             exeStack.push(new SleepStatement(new ValueExpression(new IntegerValue(n - 1))));
         }
 
