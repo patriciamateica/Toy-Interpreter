@@ -41,7 +41,6 @@ public class Controller {
     public void oneStepForAllPrg(List<ProgramState> prgList) throws InterruptedException {
         List<ProgramState> active = removeCompletedPrg(prgList);
         if (active.isEmpty()) {
-            // nothing to run — do not overwrite the repo with an empty list here
             return;
         }
 
@@ -129,10 +128,17 @@ public class Controller {
             prgList = removeCompletedPrg(repo.getPrgList());
         }
 
-        if (executor != null && !executor.isShutdown()) {
-            executor.shutdownNow();
-        }
-        repo.setPrgList(prgList);
+        repo.getPrgList().forEach(prg -> {
+            try {
+                repo.logProgramState(prg);
+            } catch (MyException e) {
+                System.err.println("Error logging final program state: " + e.getMessage());
+            }
+        });
+
+        executor.shutdownNow();
+
+        repo.setPrgList(repo.getPrgList());
     }
     /*
      * -runs all ProgramState instances to completion.

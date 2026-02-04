@@ -47,16 +47,11 @@ public class ReleaseStatement implements Statement {
         int currentPrgStateId = state.getId();
 
         if (List1.contains(currentPrgStateId)) {
-            // if this thread is currently holding a permit (is in the list), remove it.
-            // we create a copy of the list to modify it safely.
             List<java.lang.Integer> newList = new ArrayList<>(List1);
             newList.remove((java.lang.Integer) currentPrgStateId);
 
-            // update the table with the new, shorter list.
-            // reducing the list size means 'acquire' checks (size < N) might now succeed for others.
             semaphoreTable.put(foundIndex, new Pair<>(N1, newList));
         }
-        // if the thread was NOT in the list, we do nothing (it likely didn't acquire it properly or already released).
 
         return null;
     }

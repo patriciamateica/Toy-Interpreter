@@ -53,9 +53,12 @@ public class CreateSemaphoreStatement implements Statement {
         return null;
     }
     /*
-     * validates that 'var' exists and 'exp1' is an integer.
-     * creates a new entry in the global SemaphoreTable.
-     * updates 'var' to point to this new semaphore.
+     *gets the symbol table (variables) and semaphore table from the program state
+     *validates variable: checks that var exists in the symbol table and is of type int
+     *evaluates exp1 to get the initial semaphore capacity (must be an IntegerValue)
+     *gets the integer value from the evaluated expression - this becomes the maximum number of threads that can access the semaphore
+     *gets a free location in the semaphore table and stores a new semaphore entry containing:
+     *the capacity is number 1 and an empty list that tracks which threads are using the semaphore
      */
 
 

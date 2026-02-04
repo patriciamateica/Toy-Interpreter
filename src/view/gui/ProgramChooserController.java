@@ -375,6 +375,43 @@ public class ProgramChooserController {
         );
         all.add(ex12);
 
+        Statement exSwitch = new CompoundStatement(
+                new VariableDeclarationStatement(new Integer(), "a"),
+                new CompoundStatement(
+                        new VariableDeclarationStatement(new Integer(), "b"),
+                        new CompoundStatement(
+                                new VariableDeclarationStatement(new Integer(), "c"),
+                                new CompoundStatement(
+                                        new AssignmentStatement(new ValueExpression(new IntegerValue(1)), "a"),
+                                        new CompoundStatement(
+                                                new AssignmentStatement(new ValueExpression(new IntegerValue(2)), "b"),
+                                                new CompoundStatement(
+                                                        new AssignmentStatement(new ValueExpression(new IntegerValue(5)), "c"),
+                                                        new CompoundStatement(
+                                                                new SwitchStatement(
+                                                                        new ArithmeticExpression(3, new VariableExpression("a"), new ValueExpression(new IntegerValue(10))),
+                                                                        new ArithmeticExpression(3, new VariableExpression("b"), new VariableExpression("c")),
+                                                                        new ValueExpression(new IntegerValue(10)),
+                                                                        new CompoundStatement(
+                                                                                new PrintStatement(new VariableExpression("a")),
+                                                                                new PrintStatement(new VariableExpression("b"))
+                                                                        ),
+                                                                        new CompoundStatement(
+                                                                                new PrintStatement(new ValueExpression(new IntegerValue(100))),
+                                                                                new PrintStatement(new ValueExpression(new IntegerValue(200)))
+                                                                        ),
+                                                                        new PrintStatement(new ValueExpression(new IntegerValue(300)))
+                                                                ),
+                                                                new PrintStatement(new ValueExpression(new IntegerValue(300)))
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+        all.add(exSwitch);
+
         return FXCollections.observableArrayList(all);
     }
 }

@@ -9,9 +9,8 @@ import model.adt.map.IMap;
 import model.adt.stack.IStack;
 import model.adt.heap.IHeap;
 
-/**
- * switch(exp) (case exp1: stmt1) (case exp2: stmt2) (default: stmt3)
- */
+
+ // switch(exp) (case exp1: stmt1) (case exp2: stmt2) (default: stmt3)
 public class SwitchStatement implements Statement {
     private final Expression<Value> exp;
     private final Expression<Value> exp1;
@@ -40,6 +39,7 @@ public class SwitchStatement implements Statement {
         Value v2 = exp2.evaluate(symTable, heap);
 
         IStack exeStack = state.getExeStack();
+
         if (v.equals(v1)) {
             exeStack.push(stmt1);
         } else if (v.equals(v2)) {
@@ -48,15 +48,19 @@ public class SwitchStatement implements Statement {
             exeStack.push(stmt3);
         }
 
-        return null;
+        return state;
     }
 
     /*
-     * we manually evaluate the main expression and the case expressions.
+     * we manually evaluate the main expression and the case expressions
+     * we get the state of the symbol table
+     * we get the state of the heap
+     * we evaluate each expression in the context of the symbol table and heap and we get their values
+     * we get the state of the execution stack
      * we compare the results:
-     * - if exp == exp1, we schedule stmt1 for execution.
-     * - if exp == exp2, we schedule stmt2.
-     * - otherwise, we schedule the default stmt3.
+     * - if exp == exp1, we schedule stmt1 for execution and push it on the stack
+     * - if exp == exp2, we schedule stmt2 for execution and push it on the stack
+     * - otherwise, we schedule the default stmt3 for execution and push it on the stack
      */
 
     @Override
@@ -72,9 +76,13 @@ public class SwitchStatement implements Statement {
         stmt1.typecheck(typeEnv.deepCopy());
         stmt2.typecheck(typeEnv.deepCopy());
         stmt3.typecheck(typeEnv.deepCopy());
-
         return typeEnv;
     }
+    /*
+    * typecheck each of the three expressions to get their types
+    * verify that all three types are the same; if not, raise a type error
+    * return the original type environment
+     */
 
     @Override
     public String toString() {

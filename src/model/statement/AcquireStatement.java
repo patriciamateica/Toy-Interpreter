@@ -56,9 +56,9 @@ public class AcquireStatement implements Statement {
         } else {
             state.getExeStack().push(this);
         }
-        // first case: space is available (Max > Current)
+        // first case: space is available (max > current)
             // we are not already in the list, so we take a spot.
-            // ee copy the list to ensure immutability/safety before updating
+            // we copy the list to ensure immutability/safety before updating
             // update the table with the new list containing our ID
             // we successfully acquired, not pushing anything back to stack.
             // execution proceeds to the next statement.
